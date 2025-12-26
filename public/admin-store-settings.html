@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>商店設定</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --sidebar-bg: #ffffff;
+      --sidebar-border: #e5e7eb;
+      --primary: #16a34a;
+      --primary-soft: #dcfce7;
+      --primary-text: #065f46;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --card-bg: #ffffff;
+      --card-border: #e5e7eb;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .app-shell {
+      display: flex;
+      min-height: 100vh;
+      max-width: 1320px;
+      margin: 14px auto 22px;
+      background: #f9fafb;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, .02), 0 26px 70px rgba(15, 23, 42, .14);
+      border-radius: 22px;
+      overflow: hidden;
+    }
+    .sidebar {
+      width: 240px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--sidebar-border);
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #fb923c, #22c55e);
+    }
+    .brand-text-main {
+      font-size: 20px;
+      font-weight: 650;
+    }
+    .brand-text-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .nav-group-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 8px;
+    }
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .nav-item {
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-size: 15px;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      transition: background .14s ease, color .14s ease;
+    }
+    .nav-item:hover {
+      background: #f3f4f6;
+    }
+    .nav-item.active {
+      background: var(--primary-soft);
+      color: var(--primary-text);
+      font-weight: 600;
+    }
+    .sidebar-footer {
+      margin-top: auto;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .btn {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      font-size: 13px;
+      cursor: pointer;
+      color: #374151;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background .14s ease;
+    }
+    .btn-primary {
+      border-color: #16a34a;
+      background: #16a34a;
+      color: #ffffff;
+    }
+    .btn-danger {
+      border-color: #ef4444;
+      background: #ef4444;
+      color: #ffffff;
+    }
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+    .main {
+      flex: 1;
+      padding: 22px;
+      overflow: auto;
+    }
+    .main-header {
+      margin-bottom: 18px;
+    }
+    .main-title {
+      font-size: 22px;
+      font-weight: 650;
+    }
+    .main-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--card-border);
+      padding: 16px 15px 18px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, .08);
+      margin-bottom: 16px;
+    }
+    .input-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .input-row > div {
+      flex: 1;
+    }
+    .input {
+      padding: 9px 11px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #111827;
+      font-size: 14px;
+      width: 100%;
+      outline: none;
+    }
+    .input:focus {
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 1px #bfdbfe;
+    }
+    .small {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    #toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      min-width: 220px;
+      background: #16a34a;
+      color: #f9fafb;
+      padding: 10px 14px;
+      border-radius: 999px;
+      box-shadow: 0 12px 30px rgba(22,163,74,.45);
+      font-size: 14px;
+      display: none;
+      z-index: 400;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div>
+        <div class="brand">
+          <div class="brand-icon"></div>
+          <div>
+            <div class="brand-text-main">商店後台</div>
+            <div class="brand-text-sub">LIFF 管理</div>
+          </div>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-label">導航</div>
+          <ul class="nav-list">
+            <li class="nav-item" onclick="window.location.href='/admin-orders.html'">
+              <span>🏠</span><span>總覽</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='/admin-orders.html#orders'">
+              <span>📦</span><span>訂單</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='/admin-orders.html#products'">
+              <span>🛒</span><span>商品</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='/admin-orders.html#accounts'">
+              <span>👥</span><span>帳號</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='/admin-orders.html#coupons'">
+              <span>🎟️</span><span>優惠券</span>
+            </li>
+            <li class="nav-item active">
+              <span>🏪</span><span>商店設定</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='/admin-orders.html#settings'">
+              <span>⚙️</span><span>設定</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <form method="post" action="/admin/logout">
+          <button type="submit" class="btn btn-sm btn-danger">登出</button>
+        </form>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="main-header">
+        <div class="main-title">商店設定</div>
+        <div class="main-subtitle">管理商店基本資訊、營業時間與聯絡方式</div>
+      </div>
+
+      <div class="card">
+        <div class="input-row">
+          <div>
+            <div class="small">商店名稱</div>
+            <input id="storeName" class="input" placeholder="商店名稱" value="嘉義牛肉麵 後台">
+          </div>
+          <div>
+            <div class="small">商店標語</div>
+            <input id="storeSlogan" class="input" placeholder="商店標語" value="LIFF 管理">
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div>
+            <div class="small">聯絡電話</div>
+            <input id="storePhone" class="input" placeholder="0912-345-678">
+          </div>
+          <div>
+            <div class="small">聯絡信箱</div>
+            <input id="storeEmail" class="input" placeholder="store@example.com">
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div>
+            <div class="small">商店地址</div>
+            <input id="storeAddress" class="input" placeholder="嘉義市...">
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div>
+            <div class="small">營業時間</div>
+            <input id="storeHours" class="input" placeholder="11:00-14:00, 17:00-20:00" value="11:00-14:00, 17:00-20:00">
+          </div>
+          <div>
+            <div class="small">公休日</div>
+            <input id="storeOffDays" class="input" placeholder="每週一">
+          </div>
+        </div>
+
+        <div style="margin-top: 20px; text-align: right;">
+          <button class="btn btn-primary" onclick="saveSettings()">儲存設定</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    function saveSettings() {
+      const settings = {
+        storeName: document.getElementById('storeName').value,
+        storeSlogan: document.getElementById('storeSlogan').value,
+        storePhone: document.getElementById('storePhone').value,
+        storeEmail: document.getElementById('storeEmail').value,
+        storeAddress: document.getElementById('storeAddress').value,
+        storeHours: document.getElementById('storeHours').value,
+        storeOffDays: document.getElementById('storeOffDays').value
+      };
+      
+      localStorage.setItem('storeSettings', JSON.stringify(settings));
+      showToast('設定已儲存');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 2000);
+    }
+
+    // Load settings
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('storeSettings');
+      if (saved) {
+        const settings = JSON.parse(saved);
+        document.getElementById('storeName').value = settings.storeName || '';
+        document.getElementById('storeSlogan').value = settings.storeSlogan || '';
+        document.getElementById('storePhone').value = settings.storePhone || '';
+        document.getElementById('storeEmail').value = settings.storeEmail || '';
+        document.getElementById('storeAddress').value = settings.storeAddress || '';
+        document.getElementById('storeHours').value = settings.storeHours || '';
+        document.getElementById('storeOffDays').value = settings.storeOffDays || '';
+      }
+    });
+  </script>
+</body>
+</html>
