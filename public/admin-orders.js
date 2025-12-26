@@ -34,6 +34,14 @@ window.Orders = window.Orders || {};
     loadOrders();
     bindFilters();
     loadStoreViews();
+    
+  // ✅ 自動刷新：每 1 分鐘重新載入訂單和營收（馬上更新）
+  // 確保跨越午夜時 (12:00)，「今日營收」會自動更新
+  setInterval(() => {
+    console.log('[Auto Refresh] Reloading orders and revenue at', new Date().toLocaleTimeString());
+    loadOrders();
+    loadStoreSummary();
+  }, 60 * 1000);  // 1 分鐘 = 60000 毫秒
   };
 
   // 左側 tab 切換
