@@ -795,7 +795,8 @@ window.Orders = window.Orders || {};
     const map = {};
 
     orders.forEach((o) => {
-      if (!o.paid) return;
+      const isPaid = o.paid === true || ['paid', 'unshipped', 'shipped', 'done'].includes(o.status);
+      if (!isPaid) return;
       const d = new Date(o.createdAt);
       const key = d.toISOString().slice(0, 10);
       if (!map[key]) map[key] = { date: key, total: 0, count: 0 };
@@ -830,7 +831,8 @@ window.Orders = window.Orders || {};
     const year = new Date().getFullYear().toString();
 
     orders.forEach((o) => {
-      if (!o.paid) return;
+      const isPaid = o.paid === true || ['paid', 'unshipped', 'shipped', 'done'].includes(o.status);
+      if (!isPaid) return;
       const d = new Date(o.createdAt);
       const key = d.toISOString().slice(0, 7);
       if (!key.startsWith(year)) return;
