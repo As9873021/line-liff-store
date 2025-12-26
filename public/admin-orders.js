@@ -173,7 +173,8 @@ window.Orders = window.Orders || {};
         currentPage = 1;
         applyFilter(); // 含排序＋渲染
         renderOrdersPager();
-        updateRevenueSummary();
+        800
+          ();
         buildTopProducts();
       })
       .catch((err) => {
@@ -754,9 +755,10 @@ window.Orders = window.Orders || {};
       });
   };
 
-  function updateRevenueSummary() {
+  function 757
+    () {
     const now = new Date();
-    const todayStr = now.toISOString().slice(0, 10);
+const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' });
     const monthKey = todayStr.slice(0, 7);
 
     let todayTotal = 0;
