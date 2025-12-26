@@ -1,0 +1,73 @@
+[
+  {
+    "userId": "U1234567890abcdef",
+    "name": "John",
+    "totalSpent": 1200,
+    "vipLevel": 1
+  },
+  {
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "phone": "0987654321",
+    "address": "123",
+    "vipLevel": 2,
+    "totalSpent": 90076,
+    "createdAt": "2025-12-25T07:19:54.158Z",
+    "updatedAt": "2025-12-26T09:31:39.907Z",
+    "lastOrderAt": "2025-12-26T09:24:16.325Z",
+    "addresses": [
+      {
+        "id": 1766669905837,
+        "label": "",
+        "address": "123",
+        "isDefault": false
+      },
+      {
+        "id": 1766740848760,
+        "label": "",
+        "address": "嘉義縣太保市梅埔里66號",
+        "isDefault": true
+      }
+    ],
+    "stores": [
+      {
+        "id": 1766652035441,
+        "label": "",
+        "store": "太保門市",
+        "isDefault": false
+      }
+    ],
+    "lastUsedStoreId": 1766652035441,
+    "lastUsedAddressId": 1766740848760
+  },
+  {
+    "userId": "Ua66bc1cbb149d1f4b26b336b415d5cfe",
+    "name": "",
+    "phone": "",
+    "address": "",
+    "vipLevel": 0,
+    "totalSpent": 0,
+    "createdAt": "2025-12-25T07:28:34.713Z"
+  },
+  {
+    "userId": "Ubc11f2c9b97bdb616037000fd6119043",
+    "name": "Ava",
+    "phone": "0917750539",
+    "addresses": [],
+    "stores": [
+      {
+        "id": 1766658210080,
+        "label": "",
+        "store": "嘉義縣朴子市123",
+        "isDefault": true
+      }
+    ],
+    "lastUsedAddressId": null,
+    "lastUsedStoreId": null,
+    "totalSpent": 1130,
+    "vipLevel": 0,
+    "createdAt": "2025-12-25T10:20:53.517Z",
+    "lastOrderAt": "2025-12-25T10:23:28.787Z",
+    "updatedAt": "2025-12-25T10:23:28.944Z"
+  }
+]

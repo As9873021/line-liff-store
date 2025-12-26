@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>訂單詳情</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #f3f4f6;
+    }
+
+    .order-id {
+      font-size: 20px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .status-badge {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .status-paid {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-unpaid {
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    .status-shipped {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .status-done {
+      background: #f3f4f6;
+      color: #4b5563;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 650;
+      color: #374151;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .info-label {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .info-value {
+      color: #111827;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: right;
+      max-width: 60%;
+      word-break: break-word;
+    }
+
+    .item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .item-name {
+      font-size: 15px;
+      color: #111827;
+      font-weight: 500;
+    }
+
+    .item-detail {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+
+    .item-price {
+      text-align: right;
+    }
+
+    .price-main {
+      font-size: 15px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      font-size: 15px;
+    }
+
+    .total-row.final {
+      border-top: 2px solid #e5e7eb;
+      margin-top: 8px;
+      padding-top: 16px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #16a34a;
+    }
+
+    .discount-row {
+      color: #dc2626;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -30px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #16a34a;
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px #16a34a;
+    }
+
+    .timeline-dot.inactive {
+      background: #d1d5db;
+      box-shadow: 0 0 0 2px #d1d5db;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: -24px;
+      top: 16px;
+      bottom: 0;
+      width: 2px;
+      background: #e5e7eb;
+    }
+
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+
+    .timeline-time {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary {
+      background: #16a34a;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #15803d;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .btn-secondary:hover {
+      background: #e5e7eb;
+    }
+
+    .btn-danger {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fca5a5;
+    }
+
+    .btn-danger:hover {
+      background: #fee2e2;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: white;
+      font-size: 16px;
+    }
+
+    .error {
+      background: #fef2f2;
+      color: #dc2626;
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="loading" class="loading">載入中...</div>
+    <div id="content" style="display:none;"></div>
+  </div>
+
+  <script src="order-detail.js"></script>
+</body>
+</html>

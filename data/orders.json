@@ -1,0 +1,2233 @@
+[
+  {
+    "id": 1766496655852,
+    "userId": "Ua66bc1cbb149d1f4b26b336b415d5cfe",
+    "name": "W",
+    "items": [
+      {
+        "productName": "牛肉麵",
+        "qty": 1,
+        "price": 120,
+        "subTotal": 120
+      }
+    ],
+    "total": 120,
+    "createdAt": "2025-12-23T13:30:55.852Z",
+    "served": true,
+    "paid": false,
+    "status": "cancel",
+    "phone": "0912345678",
+    "address": "123",
+    "store": "123",
+    "vipLevel": 0,
+    "blacklisted": false
+  },
+  {
+    "id": 1766498729505,
+    "userId": "Ua66bc1cbb149d1f4b26b336b415d5cfe",
+    "name": "W",
+    "items": [
+      {
+        "productName": "牛肉麵",
+        "qty": 1,
+        "price": 120,
+        "subTotal": 120
+      }
+    ],
+    "total": 120,
+    "createdAt": "2025-12-23T14:05:29.505Z",
+    "served": false,
+    "paid": true,
+    "note": "",
+    "phone": "0912345678",
+    "address": "123",
+    "store": "123",
+    "status": "shipped",
+    "vipLevel": 0,
+    "blacklisted": false
+  },
+  {
+    "id": 1766498861530,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      }
+    ],
+    "total": 100,
+    "createdAt": "2025-12-23T14:07:41.530Z",
+    "served": false,
+    "paid": true,
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "shipped",
+    "vipLevel": 2,
+    "blacklisted": false
+  },
+  {
+    "id": 1766498871870,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      },
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "total": 250,
+    "createdAt": "2025-12-23T14:07:51.870Z",
+    "served": false,
+    "paid": true,
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "shipped",
+    "vipLevel": 2,
+    "blacklisted": false
+  },
+  {
+    "id": 1766499304926,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "牛肉麵",
+        "qty": 1,
+        "price": 120,
+        "subTotal": 120
+      }
+    ],
+    "total": 120,
+    "createdAt": "2025-12-23T14:15:04.926Z",
+    "served": false,
+    "paid": true,
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "shipped",
+    "vipLevel": 2,
+    "blacklisted": false
+  },
+  {
+    "id": 1766501597364,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "牛肉麵",
+        "qty": 1,
+        "price": 120,
+        "subTotal": 120
+      }
+    ],
+    "total": 120,
+    "createdAt": "2025-12-23T14:53:17.364Z",
+    "served": false,
+    "paid": true,
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "done",
+    "vipLevel": 2,
+    "blacklisted": false
+  },
+  {
+    "id": 1766501948861,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "牛肉麵",
+        "qty": 1,
+        "price": 120,
+        "subTotal": 120
+      }
+    ],
+    "total": 120,
+    "createdAt": "2025-12-23T14:59:08.861Z",
+    "served": false,
+    "paid": true,
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "done",
+    "vipLevel": 2,
+    "blacklisted": false
+  },
+  {
+    "id": 1766503800370,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      }
+    ],
+    "total": 100,
+    "createdAt": "2025-12-23T15:30:00.370Z",
+    "served": false,
+    "paid": true,
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "done",
+    "vipLevel": 2,
+    "blacklisted": false
+  },
+  {
+    "id": 1714100000001,
+    "userId": "Utest_vip0",
+    "name": "一般客人",
+    "items": [
+      {
+        "productName": "牛肉麵",
+        "qty": 1,
+        "price": 120,
+        "subTotal": 120
+      }
+    ],
+    "subtotal": 120,
+    "vipLevel": 0,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 120,
+    "createdAt": "2025-12-24T00:10:00.000Z",
+    "note": "",
+    "phone": "321",
+    "address": "321",
+    "store": "321",
+    "status": "shipped",
+    "paid": true,
+    "blacklisted": false
+  },
+  {
+    "id": 1714100000002,
+    "userId": "Utest_vip2",
+    "name": "VIP 白金客",
+    "items": [
+      {
+        "productName": "紅燒牛肉麵",
+        "qty": 2,
+        "price": 200,
+        "subTotal": 400
+      }
+    ],
+    "subtotal": 400,
+    "vipLevel": 2,
+    "vipDiscount": 40,
+    "couponCode": "BEEF2025",
+    "couponDiscount": 60,
+    "total": 300,
+    "createdAt": "2025-12-24T00:20:00.000Z",
+    "note": "測試 VIP+券",
+    "phone": "TEST-999",
+    "address": "ADDR-999",
+    "store": "STORE-999",
+    "status": "done",
+    "paid": true,
+    "settled": true,
+    "settledAt": "2025-12-24T05:16:44.947Z"
+  },
+  {
+    "id": 1766548086644,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "牛肉麵",
+        "qty": 1,
+        "price": 120,
+        "subTotal": 120
+      }
+    ],
+    "subtotal": 120,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 120,
+    "createdAt": "2025-12-24T03:48:06.644Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766548175622,
+    "userId": "Ua66bc1cbb149d1f4b26b336b415d5cfe",
+    "name": "W",
+    "items": [
+      {
+        "productName": "牛肉麵",
+        "qty": 1,
+        "price": 120,
+        "subTotal": 120
+      }
+    ],
+    "subtotal": 120,
+    "vipLevel": 0,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 120,
+    "createdAt": "2025-12-24T03:49:35.622Z",
+    "note": "",
+    "phone": "0912345678",
+    "address": "123",
+    "store": "123",
+    "status": "cancel",
+    "paid": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766554271832,
+    "userId": "Ua66bc1cbb149d1f4b26b336b415d5cfe",
+    "name": "W",
+    "items": [
+      {
+        "productName": "321",
+        "qty": 1,
+        "price": 200,
+        "subTotal": 200
+      }
+    ],
+    "subtotal": 200,
+    "vipLevel": 0,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 200,
+    "createdAt": "2025-12-24T05:31:11.832Z",
+    "note": "",
+    "phone": "0912345678",
+    "address": "123",
+    "store": "123",
+    "status": "done",
+    "paid": true,
+    "blacklisted": false
+  },
+  {
+    "id": 1766554530364,
+    "userId": "Ua66bc1cbb149d1f4b26b336b415d5cfe",
+    "name": "W",
+    "items": [
+      {
+        "productName": "牛肉麵",
+        "qty": 1,
+        "price": 120,
+        "subTotal": 120
+      }
+    ],
+    "subtotal": 120,
+    "vipLevel": 0,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 120,
+    "createdAt": "2025-12-24T05:35:30.364Z",
+    "note": "",
+    "phone": "0912345678",
+    "address": "123",
+    "store": "123",
+    "status": "done",
+    "paid": true,
+    "blacklisted": false
+  },
+  {
+    "id": 1766554871016,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "321",
+        "qty": 1,
+        "price": 200,
+        "subTotal": 200
+      },
+      {
+        "productName": "牛肉麵",
+        "qty": 1,
+        "price": 120,
+        "subTotal": 120
+      }
+    ],
+    "subtotal": 320,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 320,
+    "createdAt": "2025-12-24T05:41:11.016Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "done",
+    "paid": true,
+    "blacklisted": false
+  },
+  {
+    "id": 1766554936186,
+    "userId": "Ua66bc1cbb149d1f4b26b336b415d5cfe",
+    "name": "W",
+    "items": [
+      {
+        "productName": "321",
+        "qty": 1,
+        "price": 200,
+        "subTotal": 200
+      }
+    ],
+    "subtotal": 200,
+    "vipLevel": 0,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 200,
+    "createdAt": "2025-12-24T05:42:16.186Z",
+    "note": "",
+    "phone": "0912345678",
+    "address": "123",
+    "store": "123",
+    "status": "done",
+    "paid": true,
+    "blacklisted": false
+  },
+  {
+    "id": 1766555149968,
+    "userId": "Ua66bc1cbb149d1f4b26b336b415d5cfe",
+    "name": "W",
+    "items": [
+      {
+        "productName": "321",
+        "qty": 1,
+        "price": 200,
+        "subTotal": 200
+      }
+    ],
+    "subtotal": 200,
+    "vipLevel": 0,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 200,
+    "createdAt": "2025-12-24T05:45:49.968Z",
+    "note": "",
+    "phone": "0912345678",
+    "address": "123",
+    "store": "123",
+    "status": "done",
+    "paid": true,
+    "blacklisted": false
+  },
+  {
+    "id": 1766555328909,
+    "userId": "Ua66bc1cbb149d1f4b26b336b415d5cfe",
+    "name": "W",
+    "items": [
+      {
+        "productName": "321",
+        "qty": 1,
+        "price": 200,
+        "subTotal": 200
+      }
+    ],
+    "subtotal": 200,
+    "vipLevel": 0,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 200,
+    "createdAt": "2025-12-24T05:48:48.909Z",
+    "note": "",
+    "phone": "0912345678",
+    "address": "123",
+    "store": "123",
+    "status": "done",
+    "paid": true,
+    "blacklisted": false
+  },
+  {
+    "id": 1766555442950,
+    "userId": "Ua66bc1cbb149d1f4b26b336b415d5cfe",
+    "name": "W",
+    "items": [
+      {
+        "productName": "123",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 0,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-24T05:50:42.950Z",
+    "note": "",
+    "phone": "0912345678",
+    "address": "123",
+    "store": "123",
+    "status": "done",
+    "paid": true,
+    "blacklisted": false
+  },
+  {
+    "id": 1766557278385,
+    "userId": "Ua66bc1cbb149d1f4b26b336b415d5cfe",
+    "name": "W",
+    "items": [
+      {
+        "productName": "777",
+        "qty": 3,
+        "price": 100,
+        "subTotal": 300
+      }
+    ],
+    "subtotal": 300,
+    "vipLevel": 0,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 300,
+    "createdAt": "2025-12-24T06:21:18.385Z",
+    "note": "",
+    "phone": "0912345678",
+    "address": "123",
+    "store": "123",
+    "status": "done",
+    "paid": true,
+    "blacklisted": false
+  },
+  {
+    "id": 1766561209724,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 100,
+    "createdAt": "2025-12-24T07:26:49.724Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "done",
+    "paid": true,
+    "blacklisted": false
+  },
+  {
+    "id": 1766567024808,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "123",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-24T09:03:44.808Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766594220868,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-24T16:37:00.868Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "done",
+    "paid": true,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766599205340,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 100,
+    "createdAt": "2025-12-24T18:00:05.340Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766599225400,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "777",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      },
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      }
+    ],
+    "subtotal": 200,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 200,
+    "createdAt": "2025-12-24T18:00:25.400Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766606199383,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 100,
+    "createdAt": "2025-12-24T19:56:39.383Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766606230437,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      },
+      {
+        "productName": "豬肉麵",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 250,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 250,
+    "createdAt": "2025-12-24T19:57:10.437Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766609911989,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 100,
+    "createdAt": "2025-12-24T20:58:31.989Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "updatedAt": "2025-12-25T05:07:52.049Z",
+    "blacklisted": false
+  },
+  {
+    "id": 1766609911990,
+    "createdAt": "2025-12-25T05:06:01.130Z",
+    "updatedAt": "2025-12-25T05:08:21.533Z",
+    "status": "unpaid",
+    "served": false,
+    "paid": false,
+    "note": "",
+    "lineUserId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "lineName": "Wei",
+    "name": "Wei",
+    "phone": "0912345678",
+    "address": "嘉義縣太保市梅埔里66號",
+    "paymentMethod": "card",
+    "items": [
+      {
+        "productId": "炒飯",
+        "productName": "炒飯",
+        "price": 100,
+        "qty": 1
+      }
+    ]
+  },
+  {
+    "id": 1766640474427,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T05:27:54.427Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766640508691,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "123",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T05:28:28.691Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766640538527,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 100,
+    "createdAt": "2025-12-25T05:28:58.527Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766640625622,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 100,
+    "createdAt": "2025-12-25T05:30:25.622Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766640652575,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "123",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T05:30:52.575Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766640825694,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T05:33:45.694Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766640840158,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "321",
+        "qty": 1,
+        "price": 200,
+        "subTotal": 200
+      }
+    ],
+    "subtotal": 200,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 200,
+    "createdAt": "2025-12-25T05:34:00.158Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766641184181,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "豬肉麵",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T05:39:44.181Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766641499294,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T05:44:59.294Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766641520036,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T05:45:20.036Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766641748234,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T05:49:08.234Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766642331074,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T05:58:51.074Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766642405736,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T06:00:05.736Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766642446963,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T06:00:46.963Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766642521645,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T06:02:01.645Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766642630791,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T06:03:50.791Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766642752219,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": "Q4U26669",
+    "couponDiscount": 15,
+    "total": 135,
+    "createdAt": "2025-12-25T06:05:52.219Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766642799940,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T06:06:39.940Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766643647199,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T06:20:47.199Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766643898729,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": "JAWGPAVG",
+    "couponDiscount": 135,
+    "total": 15,
+    "createdAt": "2025-12-25T06:24:58.729Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766645045264,
+    "userId": "Ua66bc1cbb149d1f4b26b336b415d5cfe",
+    "name": "W",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "vipLevel": 0,
+    "vipDiscount": 0,
+    "couponCode": "JAWGPAVG",
+    "couponDiscount": 90,
+    "total": 10,
+    "createdAt": "2025-12-25T06:44:05.264Z",
+    "note": "",
+    "phone": "0912345678",
+    "address": "123",
+    "store": "123",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766647769818,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": "GMRKUES7",
+    "couponDiscount": 20,
+    "total": 130,
+    "createdAt": "2025-12-25T07:29:29.818Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766648200766,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 150,
+    "createdAt": "2025-12-25T07:36:40.766Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "updatedAt": "2025-12-25T07:38:25.276Z",
+    "blacklisted": false
+  },
+  {
+    "id": 1766648289157,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "weu",
+    "items": [
+      {
+        "productName": "88871",
+        "qty": 1,
+        "price": 10000,
+        "subTotal": 10000
+      }
+    ],
+    "subtotal": 10000,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 10000,
+    "createdAt": "2025-12-25T07:38:09.157Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "shipped",
+    "paid": true,
+    "settled": false,
+    "updatedAt": "2025-12-25T07:38:36.432Z",
+    "blacklisted": false
+  },
+  {
+    "id": 1766648681422,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "88871",
+        "qty": 1,
+        "price": 10000,
+        "subTotal": 10000
+      },
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 10150,
+    "vipLevel": 2,
+    "vipDiscount": 0,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 10150,
+    "createdAt": "2025-12-25T07:44:41.422Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "updatedAt": "2025-12-25T07:52:07.627Z",
+    "blacklisted": false
+  },
+  {
+    "id": 1766650618491,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 2,
+        "price": 100,
+        "subTotal": 200
+      }
+    ],
+    "subtotal": 200,
+    "vipLevel": 2,
+    "vipDiscount": 10,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 190,
+    "createdAt": "2025-12-25T08:16:58.491Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766650675313,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "vipLevel": 2,
+    "vipDiscount": 5,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 95,
+    "createdAt": "2025-12-25T08:17:55.313Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766651057301,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 8,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 142,
+    "createdAt": "2025-12-25T08:24:17.301Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "blacklisted": false,
+    "updatedAt": "2025-12-25T17:04:25.205Z"
+  },
+  {
+    "id": 1766652035396,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 8,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 142,
+    "createdAt": "2025-12-25T08:40:35.396Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "blacklisted": false,
+    "updatedAt": "2025-12-25T17:04:23.954Z"
+  },
+  {
+    "id": 1766658078479,
+    "userId": "Ubc11f2c9b97bdb616037000fd6119043",
+    "name": "Ava",
+    "items": [
+      {
+        "productName": "牛肉麵",
+        "qty": 1,
+        "price": 120,
+        "subTotal": 120
+      }
+    ],
+    "subtotal": 120,
+    "vipLevel": 0,
+    "vipDiscount": 0,
+    "couponCode": "JAWGPAVG",
+    "couponDiscount": 108,
+    "total": 12,
+    "createdAt": "2025-12-25T10:21:18.479Z",
+    "note": "",
+    "phone": "0917750539",
+    "address": "",
+    "store": "",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "updatedAt": "2025-12-25T17:04:22.294Z"
+  },
+  {
+    "id": 1766658105518,
+    "userId": "Ubc11f2c9b97bdb616037000fd6119043",
+    "name": "Ava",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 0,
+    "vipDiscount": 0,
+    "couponCode": "GMRKUES7",
+    "couponDiscount": 20,
+    "total": 130,
+    "createdAt": "2025-12-25T10:21:45.518Z",
+    "note": "",
+    "phone": "0917750539",
+    "address": "",
+    "store": "",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "updatedAt": "2025-12-25T17:04:20.787Z"
+  },
+  {
+    "id": 1766658208788,
+    "userId": "Ubc11f2c9b97bdb616037000fd6119043",
+    "name": "Ava",
+    "items": [
+      {
+        "productName": "321",
+        "qty": 1,
+        "price": 200,
+        "subTotal": 200
+      },
+      {
+        "productName": "牛肉麵",
+        "qty": 2,
+        "price": 120,
+        "subTotal": 240
+      },
+      {
+        "productName": "飲料",
+        "qty": 1,
+        "price": 30,
+        "subTotal": 30
+      }
+    ],
+    "subtotal": 470,
+    "vipLevel": 0,
+    "vipDiscount": 0,
+    "couponCode": "Q4U26669",
+    "couponDiscount": 47,
+    "total": 423,
+    "createdAt": "2025-12-25T10:23:28.788Z",
+    "note": "",
+    "phone": "0917750539",
+    "address": "",
+    "store": "嘉義縣朴子市123",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "updatedAt": "2025-12-25T17:04:19.322Z"
+  },
+  {
+    "id": 1766668678530,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      },
+      {
+        "productName": "雞腿飯",
+        "qty": 3,
+        "price": 150,
+        "subTotal": 450
+      }
+    ],
+    "subtotal": 550,
+    "vipLevel": 2,
+    "vipDiscount": 28,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 522,
+    "createdAt": "2025-12-25T13:17:58.530Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "blacklisted": false,
+    "updatedAt": "2025-12-25T17:04:16.656Z"
+  },
+  {
+    "id": 1766669271805,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 8,
+        "price": 150,
+        "subTotal": 1200
+      }
+    ],
+    "subtotal": 1200,
+    "vipLevel": 2,
+    "vipDiscount": 60,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 1140,
+    "createdAt": "2025-12-25T13:27:51.805Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "shipped",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false,
+    "updatedAt": "2025-12-26T06:56:37.874Z"
+  },
+  {
+    "id": 1766669905791,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 2,
+        "price": 150,
+        "subTotal": 300
+      }
+    ],
+    "subtotal": 300,
+    "vipLevel": 2,
+    "vipDiscount": 15,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 285,
+    "createdAt": "2025-12-25T13:38:25.791Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "blacklisted": false,
+    "updatedAt": "2025-12-25T16:39:11.577Z"
+  },
+  {
+    "id": 1766671105504,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 2,
+        "price": 150,
+        "subTotal": 300
+      }
+    ],
+    "subtotal": 300,
+    "vipLevel": 2,
+    "vipDiscount": 15,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 285,
+    "createdAt": "2025-12-25T13:58:25.504Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "blacklisted": false,
+    "updatedAt": "2025-12-25T16:39:08.186Z"
+  },
+  {
+    "id": 1766672439449,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 8,
+    "couponCode": "HMCJYMSZ",
+    "couponDiscount": 14,
+    "total": 128,
+    "createdAt": "2025-12-25T14:20:39.449Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "blacklisted": false,
+    "updatedAt": "2025-12-25T16:39:01.100Z"
+  },
+  {
+    "id": 1766673004015,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 8,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 142,
+    "createdAt": "2025-12-25T14:30:04.015Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "blacklisted": false,
+    "updatedAt": "2025-12-25T16:38:49.676Z"
+  },
+  {
+    "id": 1766685380087,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 8,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 142,
+    "createdAt": "2025-12-25T17:56:20.087Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": true,
+    "updatedAt": "2025-12-25T17:56:48.126Z",
+    "settledAt": "2025-12-26T08:22:16.071Z",
+    "blacklisted": false
+  },
+  {
+    "id": 1766685447377,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "88871",
+        "qty": 1,
+        "price": 10000,
+        "subTotal": 10000
+      }
+    ],
+    "subtotal": 10000,
+    "vipLevel": 2,
+    "vipDiscount": 1000,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 9000,
+    "createdAt": "2025-12-25T17:57:27.377Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": true,
+    "updatedAt": "2025-12-25T17:59:00.478Z",
+    "settledAt": "2025-12-26T08:22:16.071Z",
+    "blacklisted": false
+  },
+  {
+    "id": 1766685475266,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 15,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 135,
+    "createdAt": "2025-12-25T17:57:55.266Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": true,
+    "updatedAt": "2025-12-25T17:59:03.122Z",
+    "settledAt": "2025-12-26T08:22:16.071Z",
+    "blacklisted": false
+  },
+  {
+    "id": 1766685565678,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "88871",
+        "qty": 1,
+        "price": 10000,
+        "subTotal": 10000
+      }
+    ],
+    "subtotal": 10000,
+    "vipLevel": 2,
+    "vipDiscount": 1000,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 9000,
+    "createdAt": "2025-12-25T17:59:25.678Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": true,
+    "updatedAt": "2025-12-25T17:59:34.347Z",
+    "settledAt": "2025-12-26T08:22:16.071Z",
+    "blacklisted": false
+  },
+  {
+    "id": 1766731265934,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 3,
+        "price": 150,
+        "subTotal": 450
+      }
+    ],
+    "subtotal": 450,
+    "vipLevel": 2,
+    "vipDiscount": 45,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 405,
+    "createdAt": "2025-12-26T06:41:05.934Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "shipped",
+    "paid": true,
+    "settled": true,
+    "updatedAt": "2025-12-26T07:56:57.586Z",
+    "blacklisted": false,
+    "settledAt": "2025-12-26T08:22:16.071Z"
+  },
+  {
+    "id": 1766737642914,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "777",
+        "qty": 2,
+        "price": 100,
+        "subTotal": 200
+      },
+      {
+        "productName": "88871",
+        "qty": 2,
+        "price": 10000,
+        "subTotal": 20000
+      }
+    ],
+    "subtotal": 20200,
+    "vipLevel": 2,
+    "vipDiscount": 2020,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 18180,
+    "createdAt": "2025-12-26T08:27:22.914Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": false,
+    "updatedAt": "2025-12-26T08:27:31.318Z",
+    "blacklisted": false
+  },
+  {
+    "id": 1766740501400,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "vipLevel": 2,
+    "vipDiscount": 15,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 135,
+    "createdAt": "2025-12-26T09:15:01.400Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766740537529,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "vipLevel": 2,
+    "vipDiscount": 10,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 90,
+    "createdAt": "2025-12-26T09:15:37.529Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766740848665,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 2,
+        "price": 150,
+        "subTotal": 300
+      }
+    ],
+    "subtotal": 300,
+    "vipLevel": 2,
+    "vipDiscount": 30,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 270,
+    "createdAt": "2025-12-26T09:20:48.665Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "unpaid",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false
+  },
+  {
+    "id": 1766741056328,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "123",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      },
+      {
+        "productName": "321",
+        "qty": 1,
+        "price": 200,
+        "subTotal": 200
+      },
+      {
+        "productName": "777",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      },
+      {
+        "productName": "1487",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      },
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      },
+      {
+        "productName": "牛肉麵",
+        "qty": 1,
+        "price": 120,
+        "subTotal": 120
+      },
+      {
+        "productName": "飲料",
+        "qty": 1,
+        "price": 30,
+        "subTotal": 30
+      },
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      },
+      {
+        "productName": "豬肉麵",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      }
+    ],
+    "subtotal": 1100,
+    "vipLevel": 2,
+    "vipDiscount": 110,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 990,
+    "createdAt": "2025-12-26T09:24:16.328Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "123",
+    "store": "太保門市",
+    "status": "cancel",
+    "paid": false,
+    "settled": false,
+    "blacklisted": false,
+    "updatedAt": "2025-12-26T15:02:56.425Z"
+  }
+]

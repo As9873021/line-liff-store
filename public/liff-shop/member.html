@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <title>會員中心</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <link rel="stylesheet" href="./shop.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .member-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .member-header-title {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .member-header-back {
+      cursor: pointer;
+      font-size: 20px;
+      transition: transform 0.2s;
+    }
+
+    .member-header-back:hover {
+      transform: scale(1.2);
+    }
+
+    .member-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .member-main {
+      display: grid;
+      grid-template-columns: 1fr 2.5fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .member-main {
+        grid-template-columns: 1fr;
+      }
+    }
+/* 桌機版：會員中心滿版 + 基本資料整頁 */
+@media (min-width: 1024px) {
+  /* 直接讓容器吃滿螢幕寬度 */
+  .member-container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 24px 40px;
+  }
+
+  /* 取消原本 1fr / 2.5fr 的窄欄 grid，改成單欄 */
+  .member-main {
+    display: block;
+    margin-bottom: 0;
+  }
+
+  /* tabs 那張白卡吃滿內容寬度，看起來就不會像手機殼 */
+  .tabs-container {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
+  }
+
+  /* 基本資料是一整頁：上面 VIP 卡、下面所有欄位 */
+  #basic {
+    max-width: 640px;
+    margin: 32px auto 40px;
+  }
+
+  #basic .vip-card {
+    width: 100%;
+    margin: 0 0 20px;
+  }
+
+  #basic .save-btn {
+    max-width: 280px;
+  }
+}
+    /* VIP 卡片：加上發光 + 微閃爍效果，尺寸略放大 */
+    .vip-card {
+      background: radial-gradient(circle at top, #9fa8ff 0%, #667eea 35%, #764ba2 100%);
+      color: white;
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow:
+        0 10px 30px rgba(102, 126, 234, 0.4),
+        0 0 20px rgba(255, 255, 255, 0.1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+
+      width: 280px;        /* 稍微放大卡片（手機用） */
+      max-width: 100%;
+      margin: 0 auto 16px;
+    }
+
+    /* 外圍柔光 + 閃爍 */
+    .vip-card::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -40%;
+      width: 200%;
+      height: 200%;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.18) 0%, transparent 55%),
+        radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.12) 0%, transparent 55%);
+      opacity: 0.9;
+      animation: vipGlow 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* 閃亮動畫：亮度慢慢飄動 */
+    @keyframes vipGlow {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translate3d(10px, 10px, 0) scale(1.05);
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.7;
+      }
+    }
+
+    @keyframes shimmer {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, 20px); }
+    }
+
+    .vip-level {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 10px 0;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .vip-desc {
+      font-size: 14px;
+      opacity: 0.95;
+      margin-bottom: 16px;
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vip-progress {
+      margin: 20px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .progress-label {
+      font-size: 12px;
+      margin-bottom: 6px;
+      opacity: 0.9;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ffd700, #ffed4e);
+      border-radius: 10px;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .vip-spent {
+      font-size: 13px;
+      margin-top: 12px;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vip-hint {
+      font-size: 12px;
+      margin-top: 12px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      opacity: 0.95;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* VIP 圖標容器與 SVG 樣式 */
+    .vip-icon-wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    /* 皇冠放大 + 閃亮（顏色會再由 JS 覆蓋） */
+    .vip-icon {
+      width: 40px;
+      height: 40px;
+      color: #ffd700;        /* 預設金色，實際以 JS 動態顏色為主 */
+      filter:
+        drop-shadow(0 0 4px rgba(255, 255, 255, 0.9))
+        drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
+      animation: vipCrownShine 2.4s ease-in-out infinite;
+    }
+
+    .vip-icon-text {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    /* 皇冠閃亮動畫：微縮放 + 亮度脈衝 */
+    @keyframes vipCrownShine {
+      0% {
+        transform: scale(1);
+        filter:
+          drop-shadow(0 0 2px rgba(255, 255, 255, 0.8))
+          drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+      }
+      50% {
+        transform: scale(1.12);
+        filter:
+          drop-shadow(0 0 6px rgba(255, 255, 255, 1))
+          drop-shadow(0 0 16px rgba(255, 215, 0, 1));
+      }
+      100% {
+        transform: scale(1);
+        filter:
+          drop-shadow(0 0 2px rgba(255, 255, 255, 0.8))
+          drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+      }
+    }
+
+    /* 標籤導航 */
+    .tabs-container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+
+    .tabs-nav {
+      display: flex;
+      border-bottom: 2px solid #f0f0f0;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 16px 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      color: #6b7280;
+      transition: all 0.3s;
+      position: relative;
+      white-space: nowrap;
+      min-width: 100px;
+      overflow: hidden;
+    }
+
+    .tab-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.15), transparent);
+      transition: left 0.5s ease;
+      z-index: 0;
+    }
+
+    .tab-btn:hover::before {
+      left: 100%;
+    }
+
+    .tab-btn:hover {
+      color: #667eea;
+      background: #f8f9ff;
+    }
+
+    .tab-btn.active {
+      color: #667eea;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 2px 2px 0 0;
+    }
+
+    .tabs-content {
+      padding: 24px;
+      min-height: 400px;
+    }
+
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+/* 基本資料頁 */
+.form-group {
+  margin-bottom: 18px;
+}
+
+/* ✅ 新增：form-row 手機預設直排 */
+.form-row {
+  display: block;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.save-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.save-btn:active {
+  transform: translateY(0);
+}
+
+    /* 地址/門市列表 */
+    .item-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .item-card {
+      padding: 14px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .item-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #667eea, transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .item-card:hover {
+      border-color: #667eea;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+    }
+
+    .item-card:hover::before {
+      opacity: 1;
+    }
+
+    .item-card.default {
+      background: linear-gradient(135deg, #f0f4ff 0%, #f8f6ff 100%);
+      border-color: #667eea;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .item-label {
+      font-weight: 600;
+      color: #1f2937;
+      font-size: 14px;
+    }
+
+    .item-badges {
+      display: flex;
+      gap: 6px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    }
+
+    .item-text {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 10px;
+      word-break: break-word;
+      position: relative;
+      z-index: 1;
+    }
+
+    .item-actions {
+      display: flex;
+      gap: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .item-btn {
+      flex: 1;
+      padding: 6px;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .item-btn.edit {
+      background: #dbeafe;
+      color: #0369a1;
+    }
+
+    .item-btn.edit:hover {
+      background: #bfdbfe;
+      transform: scale(1.05);
+    }
+
+    .item-btn.delete {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .item-btn.delete:hover {
+      background: #fecaca;
+      transform: scale(1.05);
+    }
+
+    .add-btn {
+      width: 100%;
+      padding: 12px;
+      border: 2px dashed #667eea;
+      background: transparent;
+      color: #667eea;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-bottom: 16px;
+    }
+
+    .add-btn:hover {
+      background: #f0f4ff;
+      border-style: solid;
+      transform: translateY(-2px);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #9ca3af;
+    }
+
+    .empty-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      max-width: 420px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-header {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-close {
+      cursor: pointer;
+      font-size: 24px;
+      color: #9ca3af;
+      transition: color 0.3s;
+    }
+
+    .modal-close:hover {
+      color: #1f2937;
+    }
+
+    .modal-footer {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .modal-footer button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .modal-footer .confirm-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .modal-footer .confirm-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .modal-footer .cancel-btn {
+      background: #f3f4f6;
+      color: #6b7280;
+    }
+
+    .modal-footer .cancel-btn:hover {
+      background: #e5e7eb;
+    }
+
+    /* 優惠券列表 */
+    .coupon-item {
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+      transition: all 0.3s;
+      position: relative;
+      padding-left: 12px;
+    }
+
+    .coupon-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #667eea, #764ba2);
+      border-radius: 3px 0 0 3px;
+    }
+
+    .coupon-item:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .coupon-title {
+      font-weight: 600;
+      color: #1f2937;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .coupon-code {
+      font-family: monospace;
+      font-size: 12px;
+      color: #667eea;
+      background: #f0f4ff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .coupon-info {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .coupon-discount {
+      font-weight: 700;
+      color: #dc2626;
+      margin-right: 8px;
+    }
+
+    /* 訂單列表 */
+    .order-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: all 0.3s;
+      background: white;
+      position: relative;
+    }
+
+    .order-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #10b981, #059669);
+      border-radius: 3px 0 0 3px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .order-item:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .order-item:hover::before {
+      opacity: 1;
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .order-id {
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .order-status {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .order-status.paid {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .order-status.unpaid {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .order-time {
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .order-items {
+      font-size: 13px;
+      color: #374151;
+      margin-bottom: 10px;
+      padding: 8px;
+      background: #f9fafb;
+      border-radius: 6px;
+    }
+
+    .order-total {
+      text-align: right;
+      font-weight: 700;
+      color: #667eea;
+      font-size: 15px;
+    }
+
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .checkbox-wrapper input[type='checkbox'] {
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+    }
+
+    .checkbox-wrapper label {
+      cursor: pointer;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .suggestion-list {
+      margin-top: 8px;
+      padding: 8px;
+      background: #f9fafb;
+      border-radius: 6px;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    .suggestion-item {
+      padding: 6px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #6b7280;
+      transition: all 0.2s;
+      margin-bottom: 4px;
+    }
+
+    .suggestion-item:hover {
+      background: #e0e7ff;
+      color: #667eea;
+    }
+
+    .loading-text {
+      text-align: center;
+      color: #9ca3af;
+      padding: 20px;
+    }
+
+    /* ✅ 桌機版會員中心排版：只影響寬度 >= 1024px，手機不變 */
+    @media (min-width: 1024px) {
+      .member-container {
+        max-width: 1000px;
+        margin: 40px auto;
+      }
+
+      .tabs-container {
+        border-radius: 20px;
+        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
+      }
+
+      /* 基本資料分頁：左 VIP 卡、右表單 */
+      #basic {
+        display: grid;
+        grid-template-columns: 360px minmax(0, 1fr);
+        column-gap: 32px;
+        align-items: flex-start;
+      }
+
+      #basic .vip-card {
+        margin: 0;
+        width: 100%;
+      }
+
+      #basic .form-group,
+      #basic .save-btn {
+        max-width: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 標頭 -->
+  <div class="member-header">
+    <span class="member-header-back" onclick="goBack()">←</span>
+    <span class="member-header-title">會員中心</span>
+    <span style="width: 30px;"></span>
+  </div>
+
+  <!-- 主容器 -->
+  <div class="member-container">
+    <div class="member-main">
+      <!-- 分頁內容 -->
+      <div class="tabs-container">
+        <div class="tabs-nav">
+          <button class="tab-btn active" onclick="switchTab('basic')">基本資料</button>
+          <button class="tab-btn" onclick="switchTab('addresses')">地址管理</button>
+          <button class="tab-btn" onclick="switchTab('stores')">取貨門市</button>
+          <button class="tab-btn" onclick="switchTab('coupons')">優惠券</button>
+          <button class="tab-btn" onclick="switchTab('orders')">訂單</button>
+        </div>
+
+        <div class="tabs-content">
+          <!-- 第 1 頁：基本資料（含 VIP 卡片） -->
+          <div id="basic" class="tab-pane active">
+            <div class="vip-card" style="margin-bottom: 16px;">
+              <div class="vip-icon-wrap">
+                <svg class="vip-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M4 6.75L7.5 11l3.25-6.5 3.25 6.5L17.5 6.75 20 11v7H4v-7l2-4.25z"
+                    fill="currentColor"
+                  />
+                </svg>
+                <div class="vip-icon-text">會員等級</div>
+              </div>
+
+              <div class="vip-level" id="vipLevel">VIP0</div>
+              <div class="vip-desc" id="vipDesc">一般會員</div>
+
+              <div class="vip-progress">
+                <div class="progress-label" id="progressLabel">累積消費</div>
+                <div class="progress-bar">
+                  <div
+                    class="progress-fill"
+                    id="progressFill"
+                    style="width: 0%;"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="vip-spent">
+                消費：<strong id="totalSpent">$0</strong>
+              </div>
+
+              <div class="vip-hint" id="vipHint">努力消費中...</div>
+            </div>
+
+            <!-- 基本資料表單 -->
+            <div class="form-row">
+  <div class="form-group half">
+    <label class="form-label" for="memberName">姓名</label>
+    <input
+      id="memberName"
+      type="text"
+      class="form-input"
+      placeholder="請輸入姓名"
+    />
+  </div>
+
+  <div class="form-group half">
+    <label class="form-label" for="memberPhone">電話</label>
+    <input
+      id="memberPhone"
+      type="tel"
+      class="form-input"
+      placeholder="09xxxxxxxx"
+    />
+  </div>
+</div>
+            <button class="save-btn" id="basicSaveBtn">儲存基本資料</button>
+          </div>
+
+          <!-- 第 2 頁：地址管理 -->
+          <div id="addresses" class="tab-pane">
+            <button class="add-btn" onclick="openAddressModal()">+ 新增地址</button>
+            <div id="addressListContainer" class="item-list">
+              <div class="loading-text">讀取中...</div>
+            </div>
+          </div>
+
+          <!-- 第 3 頁：取貨門市 -->
+          <div id="stores" class="tab-pane">
+            <button class="add-btn" onclick="openStoreModal()">+ 新增取貨門市</button>
+            <div id="storeListContainer" class="item-list">
+              <div class="loading-text">讀取中...</div>
+            </div>
+          </div>
+
+          <!-- 第 4 頁：優惠券 -->
+          <div id="coupons" class="tab-pane">
+            <div id="couponListContainer">
+              <div class="loading-text">讀取中...</div>
+            </div>
+          </div>
+
+          <!-- 第 5 頁：訂單歷史 -->
+          <div id="orders" class="tab-pane">
+            <div id="orderListContainer">
+              <div class="loading-text">讀取中...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 地址編輯 Modal -->
+  <div id="addressModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="addressModalTitle">新增地址</span>
+        <span class="modal-close" onclick="closeAddressModal()">×</span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="addressLabel">地址標籤（如：家裡、公司）</label>
+        <input
+          id="addressLabel"
+          type="text"
+          class="form-input"
+          placeholder="例：家裡"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="addressInput">完整地址</label>
+        <input
+          id="addressInput"
+          type="text"
+          class="form-input"
+          placeholder="輸入地址..."
+        />
+        <div
+          id="addressSuggestions"
+          class="suggestion-list"
+          style="display: none;"
+        ></div>
+      </div>
+
+      <div class="checkbox-wrapper">
+        <input id="addressIsDefault" type="checkbox" />
+        <label for="addressIsDefault">設為預設地址</label>
+      </div>
+
+      <div class="modal-footer">
+        <button class="confirm-btn" onclick="saveAddress()">儲存</button>
+        <button class="cancel-btn" onclick="closeAddressModal()">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 取貨門市編輯 Modal -->
+  <div id="storeModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="storeModalTitle">新增取貨門市</span>
+        <span class="modal-close" onclick="closeStoreModal()">×</span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="storeLabel">門市標籤（如：7-11、全家）</label>
+        <input
+          id="storeLabel"
+          type="text"
+          class="form-input"
+          placeholder="例：7-11"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="storeInput">完整門市資訊</label>
+        <input
+          id="storeInput"
+          type="text"
+          class="form-input"
+          placeholder="例：7-11 台北中山門市"
+        />
+      </div>
+
+      <div class="checkbox-wrapper">
+        <input id="storeIsDefault" type="checkbox" />
+        <label for="storeIsDefault">設為預設門市</label>
+      </div>
+
+      <div class="modal-footer">
+        <button class="confirm-btn" onclick="saveStore()">儲存</button>
+        <button class="cancel-btn" onclick="closeStoreModal()">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./member.js"></script>
+</body>
+</html>

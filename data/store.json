@@ -1,0 +1,20 @@
+{
+  "name": "豬",
+  "adminTitle": "嘉義牛肉麵 後台",
+  "subtitle": "每日現煮牛肉湯",
+  "businessHours": "11:00–14:00, 17:00–20:00",
+  "takeoutEnabled": true,
+  "deliveryEnabled": false,
+  "productPageViews": 0,
+  "enableCoupons": true,
+  "enableVip": true,
+  "icon": "🍜",
+  "paymentMethods": {
+    "cash": false,
+    "linePay": false,
+    "card": false,
+    "homeDelivery": true,
+    "cod": true,
+    "cvsCode": true
+  }
+}

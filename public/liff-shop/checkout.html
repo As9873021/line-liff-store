@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <title>嘉義牛肉麵 - 結帳</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- LIFF SDK -->
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <!-- 共用樣式 -->
+  <link rel="stylesheet" href="./shop.css" />
+  <style>
+    .address-note {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 4px;
+      padding: 6px;
+      background: #f3f4f6;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="checkout-page">
+  <!-- 上方 LINE 風格標頭 -->
+  <div class="header">
+    <span class="back-btn" onclick="goBack()">←</span>
+    <span>確認訂單與結帳</span>
+  </div>
+
+  <!-- 中央結帳區 -->
+  <div class="checkout-container">
+    <h1 class="checkout-title">訂單結帳</h1>
+
+    <div class="checkout-layout">
+      <!-- 左邊：聯絡資料與付款方式 -->
+      <section class="card checkout-card form-card">
+        <h3>聯絡資料與付款方式</h3>
+
+        <!-- 姓名 -->
+        <label class="form-label" for="name">姓名</label>
+        <input
+          id="name"
+          type="text"
+          class="form-input"
+          placeholder="姓名"
+        />
+
+        <!-- 電話 -->
+        <label class="form-label" for="phone">電話</label>
+        <input
+          id="phone"
+          type="tel"
+          class="form-input"
+          placeholder="09xxxxxxxx"
+        />
+
+        <!-- 宅配地址：宅配用 -->
+        <div class="contact-row" id="row-address">
+          <label class="form-label" for="address">選擇地址</label>
+          <select id="address" class="form-input">
+            <option value="">-- 選擇地址 --</option>
+          </select>
+          <div class="address-note">或輸入新地址：</div>
+          <input
+            id="addressCustom"
+            type="text"
+            class="form-input"
+            placeholder="輸入新的外送地址"
+          />
+        </div>
+
+        <!-- 取貨門市：COD / 超商代碼繳費用 -->
+        <div class="contact-row" id="row-store">
+          <label class="form-label" for="store">選擇取貨門市</label>
+          <select id="store" class="form-input">
+            <option value="">-- 選擇門市 --</option>
+          </select>
+          <div class="address-note">或輸入新門市資訊：</div>
+          <input
+            id="storeCustom"
+            type="text"
+            class="form-input"
+            placeholder="輸入新的取貨門市"
+          />
+        </div>
+
+        <!-- 優惠券 -->
+        <label class="form-label" for="coupon">優惠券</label>
+        <select id="coupon" class="form-input">
+          <!-- 選項由 checkout.js 動態產生 -->
+        </select>
+
+        <!-- 付款方式 -->
+        <label class="form-label" for="payment">付款方式</label>
+        <select id="payment" class="form-input">
+          <!-- 選項由 checkout.js 動態產生 -->
+        </select>
+
+        <!-- 返回按鈕 -->
+        <button
+          type="button"
+          class="link-btn"
+          onclick="goBack()"
+          style="margin-top:10px;"
+        >
+          回到商品列表
+        </button>
+      </section>
+
+      <!-- 右邊：購物車摘要（桌機 sticky） -->
+      <aside class="card checkout-card cart-card">
+        <h3>購物車摘要</h3>
+        <div id="orderSummary"></div>
+      </aside>
+    </div>
+  </div>
+
+   <!-- 底部主 CTA：電腦 + 手機共用 -->
+  <div class="checkout-mobile-bar">
+    <div class="checkout-mobile-info">
+      <span class="checkout-mobile-label">預估金額</span>
+      <span id="mobileTotal" class="checkout-mobile-total">$0</span>
+    </div>
+    <button id="mobileSubmitBtn" class="checkout-mobile-btn">
+      送出訂單
+    </button>
+  </div>
+
+  <!-- 依照商店設定隱藏優惠券 -->
+  <script>
+    async function applyStoreCouponSetting() {
+      try {
+        const res = await fetch('/api/store');
+        const store = await res.json();
+        if (store && store.enableCoupons === false) {
+          // 找到「優惠券」那一塊，把整塊藏起來
+          const couponSelect = document.getElementById('coupon');
+          if (couponSelect) {
+            const label = document.querySelector('label[for="coupon"]');
+            if (label) label.style.display = 'none';
+            couponSelect.style.display = 'none';
+          }
+        }
+      } catch (e) {
+        console.error('load store config error', e);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', applyStoreCouponSetting);
+  </script>
+
+  <!-- 結帳邏輯 -->
+  <script src="./checkout.js"></script>
+</body>
+</html>

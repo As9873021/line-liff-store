@@ -1,0 +1,77 @@
+{
+  "123": {
+    "price": 150,
+    "image": "",
+    "sort": 5,
+    "enabled": true,
+    "stock": 100
+  },
+  "321": {
+    "price": 200,
+    "image": "",
+    "sort": 6,
+    "enabled": true,
+    "stock": 150
+  },
+  "777": {
+    "price": 100,
+    "stock": 1000,
+    "image": "",
+    "sort": 7,
+    "enabled": true
+  },
+  "1487": {
+    "price": 100,
+    "stock": 50,
+    "image": "",
+    "sort": 10,
+    "enabled": true,
+    "category": "你是八七"
+  },
+  "88871": {
+    "price": 10000,
+    "stock": 10,
+    "image": "/uploads/product-1766648268652.jpg",
+    "sort": 9,
+    "enabled": true,
+    "category": ""
+  },
+  "牛肉麵": {
+    "price": 120,
+    "stock": 20,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=250&fit=crop",
+    "sort": 1,
+    "enabled": true,
+    "category": "促銷"
+  },
+  "炒飯": {
+    "price": 100,
+    "stock": 10,
+    "image": "/uploads/product-1766592431118.jpg",
+    "sort": 2,
+    "enabled": true
+  },
+  "雞腿飯": {
+    "price": 150,
+    "stock": 20,
+    "image": "/uploads/product-1766594198872.jpg",
+    "sort": 3,
+    "enabled": true,
+    "category": "主餐"
+  },
+  "飲料": {
+    "price": 30,
+    "stock": 410,
+    "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=250&fit=crop",
+    "sort": 4,
+    "enabled": true,
+    "category": ""
+  },
+  "豬肉麵": {
+    "price": 150,
+    "stock": 80,
+    "image": "",
+    "sort": 8,
+    "enabled": true
+  }
+}

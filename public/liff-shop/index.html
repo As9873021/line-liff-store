@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>嘉義牛肉麵商店</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <link rel="stylesheet" href="./shop.css">
+</head>
+<body>
+  <!-- ✅ 開發用 debug 標記，之後可以刪掉 -->
+  <div style="color:red;font-size:12px;">DEBUG V3</div>
+  <div class="header">
+    <span class="back-btn" onclick="liff.closeWindow()">←</span>
+    <!-- 這裡改成有 id 的 span，讓 shop.js 可以更新 -->
+    <span id="storeTitle">商店名稱</span>
+
+    <!-- 右側會員頭像（點擊進入會員中心） -->
+    <div class="header-avatar" onclick="openMemberPage()">
+      <img id="memberAvatar" src="" alt="avatar">
+    </div>
+  </div>
+
+  <!-- ✅ 開發用：顯示目前登入者的 LINE userId，拿到後可以刪掉 -->
+  <div id="debugUserId" style="font-size:12px;color:#888;margin:4px 12px;">
+  </div>
+
+  <div class="container">
+    <div class="search-row">
+      <input
+        id="searchInput"
+        class="search-input"
+        type="text"
+        placeholder="搜尋商品名稱（模糊：nr ➜ 牛肉麵）"
+        oninput="onSearchChange()"
+      />
+      <button class="menu-btn" onclick="toggleCategoryPanel()">☰</button>
+    </div>
+
+    <div class="products" id="products"></div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+  <div class="cart-bar">
+    <div class="cart-bar-inner">
+      <div class="cart-summary cart-summary-click" onclick="openCart()">
+        <span class="cart-main-line" id="cartMainLine">🛒 購物車 (0) 總計 $0</span>
+        <span class="cart-sub-line" id="cartSubLine">點此查看 / 編輯購物車</span>
+      </div>
+      <button class="checkout-btn" onclick="checkout()" id="checkoutBtn" disabled>
+        立即結帳
+      </button>
+    </div>
+  </div>
+
+  <div class="category-panel" id="categoryPanel" onclick="panelBackgroundClick(event)">
+    <div class="category-panel-inner">
+      <div class="category-panel-header">
+        <span>商品分類</span>
+        <button class="panel-close-btn" onclick="toggleCategoryPanel()">✕</button>
+      </div>
+      <div id="categoryList"></div>
+    </div>
+  </div>
+
+  <!-- 商品詳情彈窗 -->
+  <div class="overlay" id="detailOverlay" onclick="overlayClick(event)">
+    <div class="detail-card">
+      <div class="detail-hero">
+        <img id="detailImg" src="">
+      </div>
+      <div class="detail-title-row">
+        <div>
+          <div class="detail-title" id="detailTitle"></div>
+          <div class="detail-tagline" id="detailSub"></div>
+        </div>
+        <div class="detail-price-main" id="detailPrice"></div>
+      </div>
+      <div class="detail-meta-row">
+        <span id="detailSold">已售出：0</span>
+        <span id="detailStock">剩餘庫存：—</span>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">商品介紹</div>
+        <div id="detailDesc">尚無商品介紹</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">選擇數量與小計</div>
+        <div class="qty-row">
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <span class="qty-display" id="qtyDisplay">1</span>
+            <button class="qty-btn" onclick="changeQty(1)">＋</button>
+          </div>
+          <div class="detail-subtotal" id="detailSubtotal">小計：<span>$0</span></div>
+        </div>
+      </div>
+      <div class="detail-actions">
+        <button class="detail-add-btn" onclick="confirmAdd()">加入購物車</button>
+        <div class="close-link" onclick="closeOverlay()">先逛逛，稍後再決定</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 購物車明細彈窗 -->
+  <div class="overlay" id="cartOverlay" onclick="cartOverlayClick(event)">
+    <div class="cart-overlay-card">
+      <div class="cart-overlay-header">
+        <span class="cart-overlay-title">購物車明細</span>
+        <button class="panel-close-btn" onclick="closeCart()">✕</button>
+      </div>
+      <div id="cartItemsContainer"></div>
+      <div class="cart-overlay-footer">
+        <span id="cartTotalText">小計：$0</span>
+        <span style="font-size:11px;color:#777;">在此可調整數量或移除品項</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="./shop.js"></script>
+</body>
+</html>
