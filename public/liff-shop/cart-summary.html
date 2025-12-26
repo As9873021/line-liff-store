@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <title>購物車摘要 - 確認訂單</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <link rel="stylesheet" href="./shop.css">
+  <style>
+    .cart-summary-page {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 16px;
+      padding-bottom: 100px;
+    }
+    .summary-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px 16px;
+      margin: -16px -16px 16px -16px;
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .summary-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .summary-subtitle {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    .cart-summary-item {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .cart-summary-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .cart-summary-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .cart-summary-name {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #333;
+    }
+    .cart-summary-price {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    .cart-summary-qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cart-summary-qty-btn {
+      width: 28px;
+      height: 28px;
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #667eea;
+      font-weight: bold;
+    }
+    .cart-summary-qty-btn:active {
+      background: #f0f0f0;
+    }
+    .cart-summary-qty-value {
+      font-size: 14px;
+      font-weight: 600;
+      min-width: 30px;
+      text-align: center;
+    }
+    .cart-summary-line-total {
+      font-size: 15px;
+      font-weight: bold;
+      color: #667eea;
+      text-align: right;
+      margin-top: 4px;
+    }
+    .cart-summary-remove {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: #fee;
+      color: #e55;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .cart-summary-remove:active {
+      background: #fdd;
+    }
+    .cart-summary-total {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .cart-summary-total-label {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 4px;
+    }
+    .cart-summary-total-value {
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .cart-summary-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: #999;
+    }
+    .cart-summary-empty-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+    .cart-summary-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 16px;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 12px;
+    }
+    .btn-back {
+      flex: 1;
+      padding: 14px;
+      border: 2px solid #667eea;
+      background: white;
+      color: #667eea;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-checkout {
+      flex: 2;
+      padding: 14px;
+      border: none;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+    .btn-checkout:disabled {
+      background: #ccc;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="cart-summary-page">
+    <div class="summary-header">
+      <div class="summary-title">🛒 購物車摘要</div>
+      <div class="summary-subtitle">確認商品無誤後，即可前往結帳</div>
+    </div>
+
+    <div id="cartItemsList"></div>
+
+    <div class="cart-summary-total" id="totalSection" style="display:none;">
+      <div class="cart-summary-total-label">訂單總計</div>
+      <div class="cart-summary-total-value" id="totalPrice">$0</div>
+    </div>
+
+    <div class="cart-summary-empty" id="emptyMessage" style="display:none;">
+      <div class="cart-summary-empty-icon">🛒</div>
+      <div>購物車是空的</div>
+      <div style="font-size:13px;margin-top:8px;">快去選購喜歡的商品吧！</div>
+    </div>
+  </div>
+
+  <div class="cart-summary-footer">
+    <button class="btn-back" onclick="goBack()">← 繼續購物</button>
+    <button class="btn-checkout" id="checkoutBtn" onclick="proceedToCheckout()">
+      前往結帳 →
+    </button>
+  </div>
+
+  <script src="./cart-summary.js"></script>
+</body>
+</html>
