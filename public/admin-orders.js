@@ -800,7 +800,7 @@ const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei
       const isPaid = o.paid === true || ['paid', 'unshipped', 'shipped', 'done'].includes(o.status);
       if (!isPaid) return;
       const d = new Date(o.createdAt);
-      const key = d.toISOString().slice(0, 10);
+      const key = new Date(o.createdAt).toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' }).slice(0, 10);
       if (!map[key]) map[key] = { date: key, total: 0, count: 0 };
       map[key].total += Number(o.total || 0);
       map[key].count += 1;
@@ -811,7 +811,7 @@ const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei
     for (let i = 6; i >= 0; i--) {
       const d = new Date(today);
       d.setDate(d.getDate() - i);
-      const key = d.toISOString().slice(0, 10);
+      const key = new Date(o.createdAt).toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' }).slice(0, 10);
       const item = map[key] || { date: key, total: 0, count: 0 };
       days.push(item);
     }
@@ -836,7 +836,7 @@ const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei
       const isPaid = o.paid === true || ['paid', 'unshipped', 'shipped', 'done'].includes(o.status);
       if (!isPaid) return;
       const d = new Date(o.createdAt);
-      const key = d.toISOString().slice(0, 7);
+      const key = new Date(o.createdAt).toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' }).slice(0, 7);
       if (!key.startsWith(year)) return;
       if (!map[key]) map[key] = { month: key, total: 0, count: 0 };
       map[key].total += Number(o.total || 0);
