@@ -227,6 +227,71 @@ app.use(cors());
 app.use(express.static('public'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/export', exportRoutes);
+// ====== 商店設定 API：讀寫 data/store.json ======
+
+// 取得商店設定
+app.get('/api/store', (req, res) => {
+  try {
+    const store = loadJson('store'); // 讀 data/store.json
+    res.json(store);
+  } catch (e) {
+    console.error('load store.json error:', e);
+    res.json({
+      name: '嘉義牛肉麵',
+      adminTitle: '嘉義牛肉麵 後台',
+      subtitle: '每日現煮牛肉湯',
+      businessHours: '11:00–14:00, 17:00–20:00',
+      takeoutEnabled: true,
+      deliveryEnabled: false,
+      productPageViews: 0,
+      enableCoupons: true,
+      enableVip: true,
+      icon: '🍜',
+      paymentMethods: {
+        cash: true,
+        linePay: false,
+        card: false,
+        homeDelivery: true,
+        cod: true,
+        cvsCode: true,
+      },
+    });
+  }
+});
+
+// 更新商店設定（後台商店設定頁呼叫）
+app.post('/api/store', (req, res) => {
+  try {
+    const body = req.body || {};
+
+    const store = {
+      name: body.name || '嘉義牛肉麵',
+      adminTitle: body.adminTitle || '嘉義牛肉麵 後台',
+      subtitle: body.subtitle || '每日現煮牛肉湯',
+      businessHours: body.businessHours || '',
+      takeoutEnabled: body.takeoutEnabled !== false,
+      deliveryEnabled: !!body.deliveryEnabled,
+      productPageViews: Number(body.productPageViews || 0),
+      enableCoupons: body.enableCoupons !== false,
+      enableVip: body.enableVip !== false,
+      icon: body.icon || '🍜',
+      paymentMethods: {
+        cash: !!(body.paymentMethods?.cash),
+        linePay: !!(body.paymentMethods?.linePay),
+        card: !!(body.paymentMethods?.card),
+        homeDelivery: !!(body.paymentMethods?.homeDelivery),
+        cod: !!(body.paymentMethods?.cod),
+        cvsCode: !!(body.paymentMethods?.cvsCode),
+      },
+    };
+
+    saveJson('store', store); // 寫回 data/store.json
+    res.json({ status: 'ok', store });
+  } catch (e) {
+    console.error('save store.json error:', e);
+    res.status(500).json({ status: 'error', message: '儲存商店設定失敗' });
+  }
+});
 
 // ====== 客人訂單通知（Messaging API push） ======
 const LINE_CHANNEL_ACCESS_TOKEN =

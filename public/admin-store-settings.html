@@ -365,58 +365,83 @@
   <div id="toast"></div>
 
   <script>
-    function saveSettings() {
-      const storeIcons = Array.from(document.querySelectorAll('.store-icon-option:checked'))
-        .map(cb => cb.value);
+  async function loadSettings() {
+    try {
+      const res = await fetch('/api/store');
+      if (!res.ok) throw new Error('load store failed');
+      const store = await res.json();
 
-      const settings = {
-        storeName: document.getElementById('storeName').value,
-        storeIcons: storeIcons,
-        storeEnableCoupons: document.getElementById('storeEnableCoupons').checked,
-        storeEnableVip: document.getElementById('storeEnableVip').checked,
-        pmCash: document.getElementById('pmCash').checked,
-        pmLinePay: document.getElementById('pmLinePay').checked,
-        pmCard: document.getElementById('pmCard').checked,
-        pmHomeDelivery: document.getElementById('pmHomeDelivery').checked,
-        pmCod: document.getElementById('pmCod').checked,
-        pmCvsCode: document.getElementById('pmCvsCode').checked
-      };
+      document.getElementById('storeName').value = store.name || '';
 
-      localStorage.setItem('storeSettings', JSON.stringify(settings));
-      showToast('設定已儲存');
-    }
-
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      toast.textContent = msg;
-      toast.style.display = 'block';
-      setTimeout(() => { toast.style.display = 'none'; }, 2000);
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const saved = localStorage.getItem('storeSettings');
-      if (saved) {
-        const settings = JSON.parse(saved);
-
-        document.getElementById('storeName').value = settings.storeName || '';
-
-        if (settings.storeIcons && Array.isArray(settings.storeIcons)) {
-          document.querySelectorAll('.store-icon-option').forEach(cb => {
-            cb.checked = settings.storeIcons.includes(cb.value);
-          });
-        }
-
-        document.getElementById('storeEnableCoupons').checked = settings.storeEnableCoupons !== false;
-        document.getElementById('storeEnableVip').checked = settings.storeEnableVip !== false;
-
-        document.getElementById('pmCash').checked = settings.pmCash !== false;
-        document.getElementById('pmLinePay').checked = settings.pmLinePay || false;
-        document.getElementById('pmCard').checked = settings.pmCard || false;
-        document.getElementById('pmHomeDelivery').checked = settings.pmHomeDelivery !== false;
-        document.getElementById('pmCod').checked = settings.pmCod !== false;
-        document.getElementById('pmCvsCode').checked = settings.pmCvsCode !== false;
+      if (Array.isArray(store.storeIcons)) {
+        document.querySelectorAll('.store-icon-option').forEach(cb => {
+          cb.checked = store.storeIcons.includes(cb.value);
+        });
       }
-    });
-  </script>
+
+      document.getElementById('storeEnableCoupons').checked = store.enableCoupons !== false;
+      document.getElementById('storeEnableVip').checked = store.enableVip !== false;
+
+      const pm = store.paymentMethods || {};
+      document.getElementById('pmCash').checked = !!pm.cash;
+      document.getElementById('pmLinePay').checked = !!pm.linePay;
+      document.getElementById('pmCard').checked = !!pm.card;
+      document.getElementById('pmHomeDelivery').checked = !!pm.homeDelivery;
+      document.getElementById('pmCod').checked = !!pm.cod;
+      document.getElementById('pmCvsCode').checked = !!pm.cvsCode;
+    } catch (e) {
+      console.error('loadSettings error', e);
+    }
+  }
+
+  async function saveSettings() {
+    const storeIcons = Array.from(
+      document.querySelectorAll('.store-icon-option:checked')
+    ).map(cb => cb.value);
+
+    const body = {
+      name: document.getElementById('storeName').value,
+      enableCoupons: document.getElementById('storeEnableCoupons').checked,
+      enableVip: document.getElementById('storeEnableVip').checked,
+      storeIcons,
+      paymentMethods: {
+        cash: document.getElementById('pmCash').checked,
+        linePay: document.getElementById('pmLinePay').checked,
+        card: document.getElementById('pmCard').checked,
+        homeDelivery: document.getElementById('pmHomeDelivery').checked,
+        cod: document.getElementById('pmCod').checked,
+        cvsCode: document.getElementById('pmCvsCode').checked,
+      },
+    };
+
+    try {
+      const res = await fetch('/api/store', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      if (data.status === 'ok') {
+        showToast('設定已儲存');
+      } else {
+        showToast('儲存失敗');
+      }
+    } catch (e) {
+      console.error('saveSettings error', e);
+      showToast('儲存失敗');
+    }
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 2000);
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    loadSettings(); // 一進頁面就向 /api/store 抓設定
+  });
+</script>
 </body>
 </html>
