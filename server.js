@@ -618,7 +618,6 @@ app.post('/api/checkout', (req, res) => {
     vipLevel: newVipLevel,
     totalSpent: user.totalSpent,
   });
-});
 
 // ====== 前台建立訂單（/api/orders）＋ 後台訂單管理 ======
 app.post('/api/orders', (req, res) => {
