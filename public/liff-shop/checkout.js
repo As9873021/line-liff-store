@@ -119,34 +119,33 @@ async function init() {
       const now = new Date();
 
       availableCoupons = allCoupons.filter((c) => {
-  if (c.isActive === false) return false;
+        if (c.isActive === false) return false;
 
-  if (c.validFrom) {
-    const vf = new Date(c.validFrom);
-    if (!isNaN(vf.getTime()) && now < vf) return false;
-  }
-  if (c.validUntil) {
-    const vu = new Date(c.validUntil);
-    if (!isNaN(vu.getTime()) && now > vu) return false;
-  }
+        if (c.validFrom) {
+          const vf = new Date(c.validFrom);
+          if (!isNaN(vf.getTime()) && now < vf) return false;
+        }
+        if (c.validUntil) {
+          const vu = new Date(c.validUntil);
+          if (!isNaN(vu.getTime()) && now > vu) return false;
+        }
 
-  if (typeof c.perUserLimit === 'number' && c.perUserLimit > 0) {
-    const usedCount = orders.filter(
-      (o) =>
-        o.userId === currentProfile.userId &&
-        o.couponCode === c.code
-    ).length;
-    if (usedCount >= c.perUserLimit) return false;
-  }
+        if (typeof c.perUserLimit === 'number' && c.perUserLimit > 0) {
+          const usedCount = orders.filter(
+            (o) =>
+              o.userId === currentProfile.userId &&
+              o.couponCode === c.code
+          ).length;
+          if (usedCount >= c.perUserLimit) return false;
+        }
 
-  // ★ VIP 等級限制
-  if (Array.isArray(c.allowedVipLevels) && c.allowedVipLevels.length) {
-    if (!c.allowedVipLevels.includes(currentVipLevel)) return false;
-  }
+        // ★ VIP 等級限制
+        if (Array.isArray(c.allowedVipLevels) && c.allowedVipLevels.length) {
+          if (!c.allowedVipLevels.includes(currentVipLevel)) return false;
+        }
 
-  return true;
-});
-
+        return true;
+      });
 
       console.log('availableCoupons =', availableCoupons);
 
@@ -322,7 +321,6 @@ function renderCouponOptions() {
   sel.innerHTML = html;
 }
 
-
 /** 重新計算購物車 summary + 底部預估金額，包含 VIP 折扣顯示 */
 function recalcSummary() {
   const el = document.getElementById('orderSummary');
@@ -343,7 +341,7 @@ function recalcSummary() {
     })
     .join('');
 
-   // 2) VIP 折扣（需同時啟用 VIP 功能才生效）
+  // 2) VIP 折扣（需同時啟用 VIP 功能才生效）
   let vipDiscount = 0;
   const enableVip = !storeConfig || storeConfig.enableVip !== false;
   if (enableVip) {
@@ -382,7 +380,7 @@ function recalcSummary() {
     hasCouponApplied || hasVip
       ? '預估實付金額（已套用折扣）'
       : '預估實付金額';
-      
+
   el.innerHTML = `
     ${lines}
     <div class="summary-row">
@@ -417,6 +415,7 @@ function recalcSummary() {
         : '預估金額';
   }
 }
+
 function renderOrderSummary() {
   recalcSummary();
 }
@@ -480,6 +479,7 @@ async function submitOrder() {
     address,
     store,
     couponCode,
+    paymentMethod: payment,   // 把付款方式帶給後端
   };
 
   console.log('checkout payload', payload);
@@ -509,7 +509,8 @@ async function submitOrder() {
         const addresses = userAddresses.length
           ? userAddresses.map((a) => ({
               ...a,
-              isDefault: a.address === address && payment === PAYMENT_TYPE.HOME,
+              isDefault:
+                a.address === address && payment === PAYMENT_TYPE.HOME,
             }))
           : [];
 
@@ -551,8 +552,12 @@ async function submitOrder() {
             phone,
             addresses: addresses.length ? addresses : undefined,
             stores: stores.length ? stores : undefined,
-            lastUsedAddressId: address ? userAddresses.find((a) => a.address === address)?.id : null,
-            lastUsedStoreId: store ? userStores.find((s) => s.store === store)?.id : null,
+            lastUsedAddressId: address
+              ? userAddresses.find((a) => a.address === address)?.id
+              : null,
+            lastUsedStoreId: store
+              ? userStores.find((s) => s.store === store)?.id
+              : null,
           }),
         });
 
@@ -587,7 +592,8 @@ async function submitOrder() {
 }
 
 function goBack() {
-    window.location.href = '/liff-shop/cart-summary.html';}
+  window.location.href = '/liff-shop/cart-summary.html';
+}
 
 window.goBack = goBack;
 

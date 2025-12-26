@@ -413,7 +413,17 @@ app.post('/api/checkout', (req, res) => {
     });
   }
 
-  const { userId, cart, name, phone, address, store, couponCode } = req.body;
+  // ✅ 這裡已經「完整」解構，包含 paymentMethod
+  const {
+    userId,
+    cart,
+    name,
+    phone,
+    address,
+    store,
+    couponCode,
+    paymentMethod,      // ★ 新增：從前端送來的付款方式
+  } = req.body;
 
   const products = loadJson('products');
   let subtotal = 0;
@@ -552,6 +562,10 @@ app.post('/api/checkout', (req, res) => {
     phone: phone || '',
     address: address || '',
     store: store || '',
+
+    // ✅ 新增：付款方式寫進訂單，沒傳就預設 'cash'
+    paymentMethod: paymentMethod || 'cash',
+
     status: 'unpaid',
     paid: false,
     settled: false,
@@ -562,6 +576,15 @@ app.post('/api/checkout', (req, res) => {
   console.log('checkout saved:', order.id);
 
   const orderNo = 'C' + String(order.id);
+
+  res.json({
+    status: 'ok',
+    orderId: orderNo,
+    total,
+    vipDiscount: finalVipDiscount,
+    couponDiscount,
+  });
+});
 
   // 在 checkout 這支也推一則通知給客人
   notifyCustomerNewOrder(
