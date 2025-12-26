@@ -587,8 +587,7 @@ async function submitOrder() {
 }
 
 function goBack() {
-  window.location.href = = '/liff-shop/cart-summary.html';
-}
+    window.location.href = '/liff-shop/cart-summary.html';}
 
 window.goBack = goBack;
 
