@@ -173,9 +173,9 @@ window.Orders = window.Orders || {};
         currentPage = 1;
         applyFilter(); // 含排序＋渲染
         renderOrdersPager();
-        800
-          ();
-        buildTopProducts();
+loadStoreSummary();
+buildTopProducts();
+
       })
       .catch((err) => {
         console.error('load orders error', err);
@@ -755,8 +755,8 @@ window.Orders = window.Orders || {};
       });
   };
 
-  function 757
-    () {
+function loadStoreSummary() {
+    
     const now = new Date();
 const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' });
     const monthKey = todayStr.slice(0, 7);
@@ -766,7 +766,7 @@ const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei
 
     orders.forEach((o) => {
       const d = new Date(o.createdAt);
-      const dateStr = d.toISOString().slice(0, 10);
+      const dateStr = new Date(o.createdAt).toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' });  // ✅ 正確：使用台北時區
       const monthStr = dateStr.slice(0, 7);
       const amount = Number(o.total || 0);
 
@@ -789,44 +789,43 @@ const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei
   }
 
   // 最近七天營收
-  function buildDailyRevenueTable() {
-    const tbody = document.querySelector('#dailyRevenueTable tbody');
-    if (!tbody) return;
-    tbody.innerHTML = '';
+function buildDailyRevenueTable() {
+  const tbody = document.querySelector('#dailyRevenueTable tbody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
 
-    const map = {};
+  const map = {};
 
-    orders.forEach((o) => {
-      const isPaid = o.paid === true || ['paid', 'unshipped', 'shipped', 'done'].includes(o.status);
-      if (!isPaid) return;
-      const d = new Date(o.createdAt);
-      const key = new Date(o.createdAt).toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' }).slice(0, 10);
-      if (!map[key]) map[key] = { date: key, total: 0, count: 0 };
-      map[key].total += Number(o.total || 0);
-      map[key].count += 1;
-    });
+  orders.forEach((o) => {
+    const isPaid = o.paid === true || ['paid', 'unshipped', 'shipped', 'done'].includes(o.status);
+    if (!isPaid) return;
+    const d = new Date(o.createdAt);
+    const key = new Date(o.createdAt).toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' });
+    if (!map[key]) map[key] = { date: key, total: 0, count: 0 };
+    map[key].total += Number(o.total || 0);
+    map[key].count += 1;
+  });
 
-    const days = [];
-    const today = new Date();
-    for (let i = 6; i >= 0; i--) {
-      const d = new Date(today);
-      d.setDate(d.getDate() - i);
-      const key = new Date(o.createdAt).toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' }).slice(0, 10);
-      const item = map[key] || { date: key, total: 0, count: 0 };
-      days.push(item);
-    }
-
-    days.forEach((item) => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${item.date}</td>
-        <td>${item.count}</td>
-        <td>NT$ ${item.total.toLocaleString('zh-TW')}</td>
-      `;
-      tbody.appendChild(tr);
-    });
+  const days = [];
+  const today = new Date();
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const key = d.toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' });  // ✅ 修改這行
+    const item = map[key] || { date: key, total: 0, count: 0 };
+    days.push(item);
   }
 
+  days.forEach((item) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${item.date}</td>
+      <td>${item.count}</td>
+      <td>NT$ ${item.total.toLocaleString('zh-TW')}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
   // 本年度每月營收資料
   function prepareMonthlyRevenueData() {
     const map = {};
