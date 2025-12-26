@@ -598,7 +598,7 @@ async function checkout() {
     saveCartRaw();
 
     // 導到結帳頁（在同一個 LIFF 內）
-    window.location.href = '/liff-shop/checkout.html';
+    window.location.href = '/liff-shop/cart-summary.html';
   } catch (e) {
     console.error(e);
     alert('結帳流程初始化失敗，請稍後再試');
