@@ -253,45 +253,112 @@
       </div>
 
       <div class="card">
-        <div class="input-row">
-          <div>
-            <div class="small">商店名稱</div>
-            <input id="storeName" class="input" placeholder="商店名稱" value="嘉義牛肉麵 後台">
-          </div>
-          <div>
-            <div class="small">商店標語</div>
-            <input id="storeSlogan" class="input" placeholder="商店標語" value="LIFF 管理">
-          </div>
-        </div>
+  <!-- 只保留商店名稱 -->
+  <div class="input-row">
+    <div>
+      <div class="small">商店名稱</div>
+      <input id="storeName" class="input" placeholder="商店名稱">
+    </div>
+  </div>
 
-        <div class="input-row">
-          <div>
-            <div class="small">聯絡電話</div>
-            <input id="storePhone" class="input" placeholder="0912-345-678">
-          </div>
-          <div>
-            <div class="small">聯絡信箱</div>
-            <input id="storeEmail" class="input" placeholder="store@example.com">
-          </div>
-        </div>
+  <hr class="overlay-hr" style="border:none;border-top:1px solid #e5e7eb;margin:10px 0;">
 
-        <div class="input-row">
-          <div>
-            <div class="small">商店地址</div>
-            <input id="storeAddress" class="input" placeholder="嘉義市...">
-          </div>
-        </div>
+  <!-- 新增：電商多圖標 -->
+  <div class="input-row" style="margin-bottom:4px;">
+    <div class="small">電商多圖標（可多選）</div>
+  </div>
+  <div class="input-row">
+    <div>
+      <label class="small" style="margin-right:8px;">
+        <input type="checkbox" class="store-icon-option" value="🛍️"> 🛍️
+      </label>
+      <label class="small" style="margin-right:8px;">
+        <input type="checkbox" class="store-icon-option" value="💳"> 💳
+      </label>
+      <label class="small" style="margin-right:8px;">
+        <input type="checkbox" class="store-icon-option" value="📦"> 📦
+      </label>
+      <label class="small" style="margin-right:8px;">
+        <input type="checkbox" class="store-icon-option" value="🚚"> 🚚
+      </label>
+      <label class="small" style="margin-right:8px;">
+        <input type="checkbox" class="store-icon-option" value="🏪"> 🏪
+      </label>
+    </div>
+  </div>
 
-        <div class="input-row">
-          <div>
-            <div class="small">營業時間</div>
-            <input id="storeHours" class="input" placeholder="11:00-14:00, 17:00-20:00" value="11:00-14:00, 17:00-20:00">
-          </div>
-          <div>
-            <div class="small">公休日</div>
-            <input id="storeOffDays" class="input" placeholder="每週一">
-          </div>
-        </div>
+  <hr class="overlay-hr" style="border:none;border-top:1px solid #e5e7eb;margin:10px 0;">
+
+  <!-- 新增：優惠與 VIP 設定 -->
+  <div class="small" style="margin-bottom:4px;">優惠與 VIP 設定</div>
+  <div class="input-row" style="margin-bottom:4px;">
+    <div>
+      <label class="small">
+        <input type="checkbox" id="storeEnableCoupons" checked>
+        啟用優惠券
+      </label>
+    </div>
+    <div>
+      <label class="small">
+        <input type="checkbox" id="storeEnableVip" checked>
+        啟用 VIP 折扣
+      </label>
+    </div>
+  </div>
+  <div class="small" style="margin-bottom:4px;color:#6b7280;">
+    關閉後，前台可以隱藏「輸入優惠碼」或不套用 VIP 折扣。
+  </div>
+
+  <hr class="overlay-hr" style="border:none;border-top:1px solid #e5e7eb;margin:10px 0;">
+
+  <!-- 新增：可用付款方式 -->
+  <div class="small" style="margin-bottom:6px;">可用付款方式</div>
+  <div class="input-row">
+    <div>
+      <label class="small">
+        <input type="checkbox" id="pmCash" checked>
+        現金
+      </label>
+    </div>
+    <div>
+      <label class="small">
+        <input type="checkbox" id="pmLinePay">
+        LINE Pay
+      </label>
+    </div>
+    <div>
+      <label class="small">
+        <input type="checkbox" id="pmCard">
+        刷卡
+      </label>
+    </div>
+  </div>
+  <div class="input-row" style="margin-top:4px;">
+    <div>
+      <label class="small">
+        <input type="checkbox" id="pmHomeDelivery" checked>
+        宅配匯款
+      </label>
+    </div>
+    <div>
+      <label class="small">
+        <input type="checkbox" id="pmCod" checked>
+        貨到付款（COD）
+      </label>
+    </div>
+    <div>
+      <label class="small">
+        <input type="checkbox" id="pmCvsCode" checked>
+        超商代碼
+      </label>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px; text-align: right;">
+    <button class="btn btn-primary" onclick="saveSettings()">儲存設定</button>
+  </div>
+</div>
+
 
         <div style="margin-top: 20px; text-align: right;">
           <button class="btn btn-primary" onclick="saveSettings()">儲存設定</button>
@@ -302,21 +369,27 @@
 
   <div id="toast"></div>
 
-  <script>
-    function saveSettings() {
-      const settings = {
-        storeName: document.getElementById('storeName').value,
-        storeSlogan: document.getElementById('storeSlogan').value,
-        storePhone: document.getElementById('storePhone').value,
-        storeEmail: document.getElementById('storeEmail').value,
-        storeAddress: document.getElementById('storeAddress').value,
-        storeHours: document.getElementById('storeHours').value,
-        storeOffDays: document.getElementById('storeOffDays').value
-      };
-      
-      localStorage.setItem('storeSettings', JSON.stringify(settings));
-      showToast('設定已儲存');
-    }
+ function saveSettings() {
+  // 取得電商多圖標（多選）
+  const storeIcons = Array.from(document.querySelectorAll('.store-icon-option:checked'))
+    .map(cb => cb.value);
+  
+  const settings = {
+    storeName: document.getElementById('storeName').value,
+    storeIcons: storeIcons,
+    storeEnableCoupons: document.getElementById('storeEnableCoupons').checked,
+    storeEnableVip: document.getElementById('storeEnableVip').checked,
+    pmCash: document.getElementById('pmCash').checked,
+    pmLinePay: document.getElementById('pmLinePay').checked,
+    pmCard: document.getElementById('pmCard').checked,
+    pmHomeDelivery: document.getElementById('pmHomeDelivery').checked,
+    pmCod: document.getElementById('pmCod').checked,
+    pmCvsCode: document.getElementById('pmCvsCode').checked
+  };
+  
+  localStorage.setItem('storeSettings', JSON.stringify(settings));
+  showToast('設定已儲存');
+}
 
     function showToast(msg) {
       const toast = document.getElementById('toast');
@@ -326,19 +399,35 @@
     }
 
     // Load settings
-    window.addEventListener('DOMContentLoaded', () => {
-      const saved = localStorage.getItem('storeSettings');
-      if (saved) {
-        const settings = JSON.parse(saved);
-        document.getElementById('storeName').value = settings.storeName || '';
-        document.getElementById('storeSlogan').value = settings.storeSlogan || '';
-        document.getElementById('storePhone').value = settings.storePhone || '';
-        document.getElementById('storeEmail').value = settings.storeEmail || '';
-        document.getElementById('storeAddress').value = settings.storeAddress || '';
-        document.getElementById('storeHours').value = settings.storeHours || '';
-        document.getElementById('storeOffDays').value = settings.storeOffDays || '';
-      }
-    });
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('storeSettings');
+  if (saved) {
+    const settings = JSON.parse(saved);
+    
+    // 商店名稱
+    document.getElementById('storeName').value = settings.storeName || '';
+    
+    // 電商多圖標
+    if (settings.storeIcons && Array.isArray(settings.storeIcons)) {
+      document.querySelectorAll('.store-icon-option').forEach(cb => {
+        cb.checked = settings.storeIcons.includes(cb.value);
+      });
+    }
+    
+    // 優惠與 VIP 設定
+    document.getElementById('storeEnableCoupons').checked = settings.storeEnableCoupons !== false;
+    document.getElementById('storeEnableVip').checked = settings.storeEnableVip !== false;
+    
+    // 可用付款方式
+    document.getElementById('pmCash').checked = settings.pmCash !== false;
+    document.getElementById('pmLinePay').checked = settings.pmLinePay || false;
+    document.getElementById('pmCard').checked = settings.pmCard || false;
+    document.getElementById('pmHomeDelivery').checked = settings.pmHomeDelivery !== false;
+    document.getElementById('pmCod').checked = settings.pmCod !== false;
+    document.getElementById('pmCvsCode').checked = settings.pmCvsCode !== false;
+  }
+});
+
   </script>
 </body>
 </html>
