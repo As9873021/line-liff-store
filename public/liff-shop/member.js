@@ -45,10 +45,10 @@ async function initMember() {
   if (addressInput) {
     addressInput.addEventListener('blur', () => validateAddress());
   }
- // ★ 新增：如果 URL 帶 #orders，自動切換到訂單 tab
-  if (window.location.hash === '#orders') {
-    switchTab('tab-orders');
-  }
+// ★ 如果 URL 帶 #orders，自動切到訂單分頁
+if (window.location.hash === '#orders') {
+  switchTab('orders');   // 對應 <div id="orders" ...>
+}
 }
 
 async function loadMemberData(userId) {

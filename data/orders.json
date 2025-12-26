@@ -2229,5 +2229,40 @@
     "settled": false,
     "blacklisted": false,
     "updatedAt": "2025-12-26T15:02:56.425Z"
+  },
+  {
+    "id": 1766770204654,
+    "userId": "U9bb0213f44f8763733e5e20a7cad4a93",
+    "name": "Wei",
+    "items": [
+      {
+        "productName": "雞腿飯",
+        "qty": 1,
+        "price": 150,
+        "subTotal": 150
+      },
+      {
+        "productName": "炒飯",
+        "qty": 1,
+        "price": 100,
+        "subTotal": 100
+      }
+    ],
+    "subtotal": 250,
+    "vipLevel": 2,
+    "vipDiscount": 25,
+    "couponCode": null,
+    "couponDiscount": 0,
+    "total": 225,
+    "createdAt": "2025-12-26T17:30:04.654Z",
+    "note": "",
+    "phone": "0987654321",
+    "address": "",
+    "store": "太保門市",
+    "status": "paid",
+    "paid": true,
+    "settled": true,
+    "updatedAt": "2025-12-26T17:30:25.802Z",
+    "settledAt": "2025-12-26T18:14:37.631Z"
   }
 ]

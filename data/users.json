@@ -11,10 +11,10 @@
     "phone": "0987654321",
     "address": "123",
     "vipLevel": 2,
-    "totalSpent": 90076,
+    "totalSpent": 90526,
     "createdAt": "2025-12-25T07:19:54.158Z",
-    "updatedAt": "2025-12-26T09:31:39.907Z",
-    "lastOrderAt": "2025-12-26T09:24:16.325Z",
+    "updatedAt": "2025-12-26T17:30:04.787Z",
+    "lastOrderAt": "2025-12-26T17:30:04.652Z",
     "addresses": [
       {
         "id": 1766669905837,
@@ -26,7 +26,7 @@
         "id": 1766740848760,
         "label": "",
         "address": "嘉義縣太保市梅埔里66號",
-        "isDefault": true
+        "isDefault": false
       }
     ],
     "stores": [
@@ -34,7 +34,7 @@
         "id": 1766652035441,
         "label": "",
         "store": "太保門市",
-        "isDefault": false
+        "isDefault": true
       }
     ],
     "lastUsedStoreId": 1766652035441,
