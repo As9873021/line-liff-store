@@ -58,7 +58,7 @@ function syncCartToLocalStorage() {
 
 // ========= 商店基本設定 =========
 async function loadStoreConfig() {
-  console.log('>>> loadStoreConfig called');   // 新增這行
+  console.log('>>> loadStoreConfig called');
   try {
     const res = await fetch('/api/store');
     const store = await res.json();
@@ -66,16 +66,27 @@ async function loadStoreConfig() {
     console.log('store from /api/store =', store);
 
     if (store && store.name) {
-      const icon = store.icon || '🛒';
+      // 1. 主圖標：優先用 store.icon，沒有就用多圖標陣列的第一個，最後才退回 🛒
+      let mainIcon = store.icon || '🛒';
+      if ((!store.icon || store.icon === '') &&
+          Array.isArray(store.storeIcons) &&
+          store.storeIcons.length > 0) {
+        mainIcon = store.storeIcons[0];
+      }
+
+      // 2. 若有多圖標，就全部一起顯示
+      let iconText = mainIcon;
+      if (Array.isArray(store.storeIcons) && store.storeIcons.length > 0) {
+        iconText = store.storeIcons.join(' ');
+      }
 
       // tab 標題
-      document.title = `${icon} ${store.name}商店`;
+      document.title = `${iconText} ${store.name}商店`;
 
       // 綠色那一列「圖案 + 店名」
       const headerSpan = document.getElementById('storeTitle');
       if (headerSpan) {
-        headerSpan.innerText = '';
-        headerSpan.textContent = `${icon} ${store.name}`;
+        headerSpan.textContent = `${iconText} ${store.name}`;
       }
     }
 
