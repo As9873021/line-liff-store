@@ -1,4 +1,13 @@
-// public/liff-shop/shop.js
+// public/liff-shop/shop.js  最上面
+
+// ========= 依 URL hash 決定入口頁（先測是否有跑） =========
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('>>> DOMContentLoaded fired, hash =', location.hash);
+
+  if (location.hash === '#orders') {
+    location.href = './member.html#orders';
+  }
+});
 
 const LIFF_ID = '2008758720-AsQsTKBk';
 
@@ -613,3 +622,10 @@ window.confirmAdd = confirmAdd;
 window.changePage = changePage;
 window.changeCategory = changeCategory;
 window.openMemberPage = openMemberPage;
+// ========= 依 URL hash 決定入口頁 =========
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('hash at load =', location.hash);  // 新增
+  if (location.hash === '#orders') {
+    location.href = './member.html#orders';
+  }
+});
