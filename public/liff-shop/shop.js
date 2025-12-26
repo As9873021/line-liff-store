@@ -58,6 +58,7 @@ function syncCartToLocalStorage() {
 
 // ========= 商店基本設定 =========
 async function loadStoreConfig() {
+  console.log('>>> loadStoreConfig called');   // 新增這行
   try {
     const res = await fetch('/api/store');
     const store = await res.json();
@@ -78,12 +79,12 @@ async function loadStoreConfig() {
       }
     }
 
-    // ✅ 別忘了把 store 存到 localStorage（你原本缺這一段的關閉大括號）
     localStorage.setItem('storeConfig', JSON.stringify(store));
   } catch (e) {
     console.error('load store config error', e);
   }
 }
+
 
 // ========= 啟動流程 =========
 (async function boot() {
