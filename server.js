@@ -329,35 +329,35 @@ async function notifyCustomerNewOrder(order, orderNo) {
   console.log('notifyCustomerNewOrder called, order =', order, 'orderNo =', orderNo);
 
   const to = order.lineUserId; // 客人的 LINE userId
-  if (!to || !LINE_CHANNEL_ACCESS_TOKEN) {
-    console.log(
-      'notifyCustomerNewOrder skip, to =',
-      to,
-      'hasToken =',
-      !!LINE_CHANNEL_ACCESS_TOKEN
-    );
-    return;
-  }
+if (!to || !LINE_CHANNEL_ACCESS_TOKEN) {
+  console.log(
+    'notifyCustomerNewOrder skip, to =',
+    to,
+    'hasToken =',
+    !!LINE_CHANNEL_ACCESS_TOKEN
+  );
+  return;
+}
 
-  const store = loadStoreConfigSafe();
-  const templates = store.paymentMessageTemplates || {};
-  const bankInfo = store.bankInfo || {};
+const store = loadStoreConfigSafe();
+const templates = store.paymentMessageTemplates || {};
+const bankInfo = store.bankInfo || {};
 
-  const method = order.paymentMethod || 'cash';
-  const template =
-    templates[method] ||
-    '📦 感謝您的訂購\n訂單編號：{{orderNo}}\n付款方式：{{paymentMethod}}\n\n應付金額：{{total}} 元\n\n訂單明細：\n{{items}}';
+const method = order.paymentMethod || 'cash';
+const template =
+  templates[method] ||
+  '📦 感謝您的訂購\n訂單編號：{{orderNo}}\n付款方式：{{paymentMethod}}\n\n應付金額：{{total}} 元\n\n訂單明細：\n{{items}}';
 
-  const text = applyTemplate(template, {
-    orderNo,
-    total: order.total || 0,
-    paymentMethod: method,
-    payCode: order.cvsCode || '',
-    items: buildItemsText(order),
-    bankName: bankInfo.bankName || '',
-    bankOwner: bankInfo.bankOwner || '',
-    bankAccount: bankInfo.bankAccount || '',
-  });
+const text = applyTemplate(template, {
+  orderNo,
+  total: order.total || 0,
+  paymentMethod: method,
+  payCode: order.cvsCode || '',
+  items: buildItemsText(order),
+  bankName: bankInfo.bankName || '',
+  bankOwner: bankInfo.bankOwner || '',
+  bankAccount: bankInfo.bankAccount || '',
+});
 
   const body = {
     to,
@@ -413,7 +413,7 @@ app.post('/api/checkout', (req, res) => {
     });
   }
 
-  // ✅ 這裡已經「完整」解構，包含 paymentMethod
+  // ✅ 解構，包含 paymentMethod
   const {
     userId,
     cart,
@@ -422,7 +422,7 @@ app.post('/api/checkout', (req, res) => {
     address,
     store,
     couponCode,
-    paymentMethod,      // ★ 新增：從前端送來的付款方式
+    paymentMethod, // 新增：從前端送來的付款方式
   } = req.body;
 
   const products = loadJson('products');
@@ -562,10 +562,8 @@ app.post('/api/checkout', (req, res) => {
     phone: phone || '',
     address: address || '',
     store: store || '',
-
-    // ✅ 新增：付款方式寫進訂單，沒傳就預設 'cash'
+    // ✅ 付款方式寫進訂單，沒傳就預設 'cash'
     paymentMethod: paymentMethod || 'cash',
-
     status: 'unpaid',
     paid: false,
     settled: false,
@@ -577,47 +575,40 @@ app.post('/api/checkout', (req, res) => {
 
   const orderNo = 'C' + String(order.id);
 
-  res.json({
-    status: 'ok',
-    orderId: orderNo,
-    total,
-    vipDiscount: finalVipDiscount,
-    couponDiscount,
-  });
+// 在 checkout 這支也推一則通知給客人
+notifyCustomerNewOrder(
+  {
+    lineUserId: userId,
+    name,
+    phone,
+    address,
+    paymentMethod: paymentMethod || 'cash',
+    items: items.map((it) => ({
+      productName: it.productName,
+      price: it.price,
+      qty: it.qty,
+    })),
+    total,
+  },
+  orderNo
+).catch((e) => {
+  console.error(
+    'notifyCustomerNewOrder error:',
+    e.response?.data || e.message
+  );
 });
 
-  // 在 checkout 這支也推一則通知給客人
-  notifyCustomerNewOrder(
-    {
-      lineUserId: userId,
-      name,
-      phone,
-      address,
-      paymentMethod: 'cvsCode',
-      items: items.map((it) => ({
-        productName: it.productName,
-        price: it.price,
-        qty: it.qty,
-      })),
-      total,
-    },
-    orderNo
-  ).catch((e) => {
-    console.error(
-      'notifyCustomerNewOrder error:',
-      e.response?.data || e.message
-    );
-  });
-
-  res.json({
-    status: 'ok',
-    orderId: order.id,
-    total,
-    vipDiscount: finalVipDiscount,
-    couponDiscount,
-    vipLevel: newVipLevel,
-    totalSpent: user.totalSpent,
-  });
+// ✅ 只回傳一次
+res.json({
+  status: 'ok',
+  orderId: orderNo,
+  total,
+  vipDiscount: finalVipDiscount,
+  couponDiscount,
+  vipLevel: newVipLevel,
+  totalSpent: user.totalSpent,
+});
+});
 
 // ====== 前台建立訂單（/api/orders）＋ 後台訂單管理 ======
 app.post('/api/orders', (req, res) => {
