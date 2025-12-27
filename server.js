@@ -14,25 +14,22 @@ const exportRoutes = require('./routes/export');
 const app = express();
 
 // 一定要先解析 JSON
+app.use(express.json());                 // ★ 加這行
+app.use(express.urlencoded({ extended: true })); // ★ 這行也放這裡即可，下面那行可以刪掉
 
 app.use(cors());
 
 // 靜態檔與上傳檔
 app.use(express.static('public'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(express.urlencoded({ extended: true }));
+// 這行就可以拿掉，因為上面已經有了：
+// app.use(express.urlencoded({ extended: true }));
 
 // 匯出 API：/api/export/...
-// - GET  /api/export/daily-revenue
-// - POST /api/export/export-and-settle
-// - GET  /api/export/packing-list
-// - POST /api/export/shipping-note
 app.use('/api/export', exportRoutes);
 
 // 後台入口：/admin 直接開後台主畫面
 app.get('/admin', (req, res) => {
-  // 想預設進哪一頁就改這個檔名：
-  // admin-orders.html / admin-products.html / admin-store.html / admin-settings.html ...
   res.sendFile(path.join(__dirname, 'public', 'admin-orders.html'));
 });
 
