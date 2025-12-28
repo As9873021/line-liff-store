@@ -10,12 +10,6 @@ const ExcelJS = require('exceljs');
 const multer = require('multer');
 const axios = require('axios');
 const exportRoutes = require('./routes/export');
-const mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('✅ MongoDB Atlas 連線成功'))
-  .catch(err => console.error('❌ MongoDB 連線失敗:', err));
-
 
 const app = express();
 
@@ -52,29 +46,7 @@ const orderSchema = new mongoose.Schema({
 });
 const Order = mongoose.model('Order', orderSchema);
 
-// 🔥 MongoDB 取代 JSON
-async function loadOrders() {
-  return await Order.find().sort({ createdAt: -1 }).lean();
-}
-async function saveOrder(order) {
-  await Order.findOneAndUpdate(
-    { id: order.id },
-    order,
-    { upsert: true, new: true }
-  );
-}
-// ===== 結束 =====
 
-// 🔥 MongoDB Orders API
-app.get('/api/orders', async (req, res) => {
-  try {
-    const orders = await loadOrders();
-    res.json(orders);
-  } catch (e) {
-    console.error('MongoDB orders error:', e);
-    res.status(500).json({ status: 'error' });
-  }
-});
 
 app.post('/api/orders', async (req, res) => {
   try {
