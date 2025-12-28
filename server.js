@@ -10,6 +10,12 @@ const ExcelJS = require('exceljs');
 const multer = require('multer');
 const axios = require('axios');
 const exportRoutes = require('./routes/export');
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('✅ MongoDB Atlas 連線成功'))
+  .catch(err => console.error('❌ MongoDB 連線失敗:', err));
+
 
 const app = express();
 
