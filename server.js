@@ -18,70 +18,25 @@ app.use(express.json());                 // ★ 加這行
 app.use(express.urlencoded({ extended: true })); // ★ 這行也放這裡即可，下面那行可以刪掉
 
 app.use(cors());
-// 改用 JSON 版本：
-async function loadOrders() {
+// 🔥 新增這兩個共用函式
+function loadJson(filename) {
   try {
-    return JSON.parse(fs.readFileSync(path.join(__dirname, 'data/orders.json'), 'utf8'));
+    return JSON.parse(fs.readFileSync(path.join(__dirname, 'data', `${filename}.json`), 'utf8'));
   } catch {
+    if (filename === 'orders') return [];
+    if (filename === 'users') return [];
+    if (filename === 'products') return {};
+    if (filename === 'carts') return {};
     return [];
   }
 }
 
-async function saveOrder(order) {
-  let orders = await loadOrders();
-  const idx = orders.findIndex(o => o.id === order.id);
-  if (idx > -1) {
-    orders[idx] = order;
-  } else {
-    orders.push(order);
-  }
-  fs.writeFileSync(path.join(__dirname, 'data/orders.json'), JSON.stringify(orders, null, 2));
+function saveJson(filename, data) {
+  const dir = path.join(__dirname, 'data');
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, `${filename}.json`), JSON.stringify(data, null, 2));
 }
 
-
-app.post('/api/orders', async (req, res) => {
-  try {
-    const body = req.body;
-    const items = Array.isArray(body.items) ? body.items : [];
-    
-    if (!items.length) {
-      return res.status(400).json({ status: 'error', message: 'items required' });
-    }
-
-    const orders = await loadOrders();
-    const maxId = orders.reduce((max, o) => Math.max(max, Number(o.id || 0)), 0);
-    const newId = maxId + 1;
-
-    const order = {
-      id: newId,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      status: 'unpaid',
-      served: false,
-      paid: false,
-      note: '',
-      lineUserId: body.lineUserId || '',
-      lineName: body.lineName || '',
-      name: body.name || '',
-      phone: body.phone || '',
-      address: body.address || '',
-      paymentMethod: body.paymentMethod || 'cash',
-      items: items.map(it => ({
-        productId: it.productId || '',
-        productName: it.name || '',
-        price: Number(it.price || 0),
-        qty: Number(it.quantity || 0)
-      }))
-    };
-
-    await saveOrder(order);
-    const orderNo = 'O' + String(order.id).padStart(6, '0');
-    res.json({ status: 'ok', orderId: order.id, orderNo, order });
-  } catch (e) {
-    console.error('save order error:', e);
-    res.status(500).json({ status: 'error' });
-  }
-});
 
 // 靜態檔與上傳檔
 app.use(express.static('public'));
