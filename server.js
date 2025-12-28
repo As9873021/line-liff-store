@@ -18,34 +18,25 @@ app.use(express.json());                 // ★ 加這行
 app.use(express.urlencoded({ extended: true })); // ★ 這行也放這裡即可，下面那行可以刪掉
 
 app.use(cors());
-// ===== 🔥 MongoDB Schema + 函數 =====
-const orderSchema = new mongoose.Schema({
-  id: Number,
-  userId: String,
-  name: String,
-  phone: String,
-  address: String,
-  store: String,
-  lineUserId: String,
-  lineName: String,
-  items: [{
-    productName: String,
-    productId: String,
-    price: Number,
-    qty: Number
-  }],
-  subtotal: Number,
-  total: Number,
-  status: String,
-  paid: Boolean,
-  served: Boolean,
-  note: String,
-  paymentMethod: String,
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: Date
-});
-const Order = mongoose.model('Order', orderSchema);
+// 改用 JSON 版本：
+async function loadOrders() {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(__dirname, 'data/orders.json'), 'utf8'));
+  } catch {
+    return [];
+  }
+}
 
+async function saveOrder(order) {
+  let orders = await loadOrders();
+  const idx = orders.findIndex(o => o.id === order.id);
+  if (idx > -1) {
+    orders[idx] = order;
+  } else {
+    orders.push(order);
+  }
+  fs.writeFileSync(path.join(__dirname, 'data/orders.json'), JSON.stringify(orders, null, 2));
+}
 
 
 app.post('/api/orders', async (req, res) => {
