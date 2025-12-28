@@ -24,6 +24,101 @@ app.use(express.json());                 // ★ 加這行
 app.use(express.urlencoded({ extended: true })); // ★ 這行也放這裡即可，下面那行可以刪掉
 
 app.use(cors());
+// ===== 🔥 MongoDB Schema + 函數 =====
+const orderSchema = new mongoose.Schema({
+  id: Number,
+  userId: String,
+  name: String,
+  phone: String,
+  address: String,
+  store: String,
+  lineUserId: String,
+  lineName: String,
+  items: [{
+    productName: String,
+    productId: String,
+    price: Number,
+    qty: Number
+  }],
+  subtotal: Number,
+  total: Number,
+  status: String,
+  paid: Boolean,
+  served: Boolean,
+  note: String,
+  paymentMethod: String,
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: Date
+});
+const Order = mongoose.model('Order', orderSchema);
+
+// 🔥 MongoDB 取代 JSON
+async function loadOrders() {
+  return await Order.find().sort({ createdAt: -1 }).lean();
+}
+async function saveOrder(order) {
+  await Order.findOneAndUpdate(
+    { id: order.id },
+    order,
+    { upsert: true, new: true }
+  );
+}
+// ===== 結束 =====
+
+// 🔥 MongoDB Orders API
+app.get('/api/orders', async (req, res) => {
+  try {
+    const orders = await loadOrders();
+    res.json(orders);
+  } catch (e) {
+    console.error('MongoDB orders error:', e);
+    res.status(500).json({ status: 'error' });
+  }
+});
+
+app.post('/api/orders', async (req, res) => {
+  try {
+    const body = req.body;
+    const items = Array.isArray(body.items) ? body.items : [];
+    
+    if (!items.length) {
+      return res.status(400).json({ status: 'error', message: 'items required' });
+    }
+
+    const orders = await loadOrders();
+    const maxId = orders.reduce((max, o) => Math.max(max, Number(o.id || 0)), 0);
+    const newId = maxId + 1;
+
+    const order = {
+      id: newId,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      status: 'unpaid',
+      served: false,
+      paid: false,
+      note: '',
+      lineUserId: body.lineUserId || '',
+      lineName: body.lineName || '',
+      name: body.name || '',
+      phone: body.phone || '',
+      address: body.address || '',
+      paymentMethod: body.paymentMethod || 'cash',
+      items: items.map(it => ({
+        productId: it.productId || '',
+        productName: it.name || '',
+        price: Number(it.price || 0),
+        qty: Number(it.quantity || 0)
+      }))
+    };
+
+    await saveOrder(order);
+    const orderNo = 'O' + String(order.id).padStart(6, '0');
+    res.json({ status: 'ok', orderId: order.id, orderNo, order });
+  } catch (e) {
+    console.error('save order error:', e);
+    res.status(500).json({ status: 'error' });
+  }
+});
 
 // 靜態檔與上傳檔
 app.use(express.static('public'));
@@ -39,18 +134,6 @@ app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin-orders.html'));
 });
 
-// ====== 共用工具：讀/寫 JSON ======
-function loadJson(name) {
-  return JSON.parse(
-    fs.readFileSync(path.join(__dirname, 'data', name + '.json'))
-  );
-}
-function saveJson(name, data) {
-  fs.writeFileSync(
-    path.join(__dirname, 'data', name + '.json'),
-    JSON.stringify(data, null, 2)
-  );
-}
 
 // ====== 共用：套用優惠券規則 ======
 function applyCoupon({ userId, amount, code, vipLevel }) {
