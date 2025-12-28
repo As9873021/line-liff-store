@@ -1847,3 +1847,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+// 🔥 加這行！強制 Git 變更
+console.log('JSON orders mode - MongoDB disabled ✅ 2025-12-28');
