@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>登入管理系統 - PREMIUM ADMIN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-10 rounded-3xl shadow-xl w-full max-w-md text-center">
+        <h1 class="text-2xl font-black tracking-tighter mb-8">ADMIN LOGIN</h1>
+        <div class="space-y-4">
+            <input type="email" id="email" placeholder="管理員信箱" class="w-full border p-4 rounded-xl focus:outline-none focus:border-black">
+            <input type="password" id="password" placeholder="密碼" class="w-full border p-4 rounded-xl focus:outline-none focus:border-black">
+            <button id="loginBtn" class="w-full bg-black text-white py-4 rounded-xl font-bold hover:opacity-90 transition">進入控制台</button>
+        </div>
+        <p id="errMsg" class="text-red-500 text-xs mt-4 hidden"></p>
+    </div>
+    <script type="module" src="admin-core.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    letter-spacing: -0.01em;
+}
+
+/* 側邊導覽點擊效果 */
+nav a.active {
+    background: #000;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* 數據卡片懸浮動畫 */
+.stat-card {
+    transition: transform 0.3s ease;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+/* 自定義捲軸 */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
+}

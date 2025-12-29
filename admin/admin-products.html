@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品管理 - 終極電商後台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="flex">
+        <nav class="w-64 min-h-screen bg-white shadow-md p-6">
+            <h1 class="text-xl font-bold mb-8 text-black">營運控制中心</h1>
+            <ul class="space-y-4">
+                <li><a href="dashboard.html" class="block p-2 hover:bg-gray-100 rounded">數據大腦</a></li>
+                <li><a href="admin-products.html" class="block p-2 bg-black text-white rounded">商品管理</a></li>
+                <li><a href="admin-orders.html" class="block p-2 hover:bg-gray-100 rounded">訂單處理</a></li>
+                <li><a href="settings.html" class="block p-2 hover:bg-gray-100 rounded">系統自定義</a></li>
+            </ul>
+        </nav>
+
+        <main class="flex-1 p-10">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold">商品管理</h2>
+                <button onclick="toggleModal(true)" class="bg-black text-white px-6 py-2 rounded-full hover:opacity-80 transition">
+                    + 新增商品
+                </button>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-50 border-b">
+                        <tr>
+                            <th class="p-4">商品圖</th>
+                            <th class="p-4">商品名稱</th>
+                            <th class="p-4">分類</th>
+                            <th class="p-4">庫存</th>
+                            <th class="p-4">模式</th>
+                            <th class="p-4">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div id="productModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-50">
+        <div class="bg-white w-full max-w-2xl rounded-2xl p-8 max-h-[90vh] overflow-y-auto">
+            <h3 class="text-xl font-bold mb-6">編輯商品資訊</h3>
+            
+            <form id="productForm" class="space-y-6">
+                <div>
+                    <label class="block mb-2 font-medium">商品圖片 (自動壓縮優化)</label>
+                    <input type="file" id="imageInput" accept="image/*" class="w-full border p-2 rounded">
+                    <div id="imagePreview" class="mt-2 hidden">
+                        <img src="" alt="預覽" class="w-32 h-32 object-cover rounded shadow-sm border">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block mb-2 font-medium">商品名稱</label>
+                        <input type="text" id="name" class="w-full border p-2 rounded" placeholder="例如：韓系水光唇釉">
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-medium">商品分類</label>
+                        <select id="category" class="w-full border p-2 rounded">
+                            <option value="美妝">美妝</option>
+                            <option value="服飾">服飾</option>
+                            <option value="隱形眼鏡">隱形眼鏡</option>
+                            <option value="穿戴甲">穿戴甲</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block mb-2 font-medium">售價 (NT$)</label>
+                        <input type="number" id="price" class="w-full border p-2 rounded">
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-medium">庫存數量</label>
+                        <input type="number" id="stock" class="w-full border p-2 rounded">
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-xl space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-gray-700">預購模式開關</span>
+                        <input type="checkbox" id="preOrderEnabled" class="w-5 h-5 accent-black">
+                    </div>
+                    <div id="preOrderSettings" class="hidden">
+                        <label class="block mb-2 text-sm text-gray-500">預計出貨天數</label>
+                        <input type="number" id="preOrderDays" class="w-full border p-2 rounded" placeholder="例如：14">
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-4 mt-8">
+                    <button type="button" onclick="toggleModal(false)" class="px-6 py-2 border rounded-full hover:bg-gray-50">取消</button>
+                    <button type="submit" class="px-6 py-2 bg-black text-white rounded-full hover:opacity-80">儲存商品</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { cloudinaryConfig } from '../core/firebase-config.js';
+
+        // 彈窗顯示邏輯
+        window.toggleModal = (show) => {
+            document.getElementById('productModal').classList.toggle('hidden', !show);
+            document.getElementById('productModal').classList.toggle('flex', show);
+        };
+
+        // 預購模式顯示切換
+        document.getElementById('preOrderEnabled').addEventListener('change', (e) => {
+            document.getElementById('preOrderSettings').classList.toggle('hidden', !e.target.checked);
+        });
+
+        // 圖片預覽與上傳 Cloudinary 核心邏輯
+        const imageInput = document.getElementById('imageInput');
+        imageInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // 預覽圖片
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const preview = document.getElementById('imagePreview');
+                preview.querySelector('img').src = event.target.result;
+                preview.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+
+            // 這裡後續會串接 Cloudinary API 上傳邏輯
+            console.log("準備上傳至 Cloudinary:", cloudinaryConfig.cloudName);
+        });
+
+        // 表單提交邏輯
+        document.getElementById('productForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            alert('功能測試成功！準備將資料寫入 Firestore...');
+            toggleModal(false);
+        });
+    </script>
+</body>
+</html>

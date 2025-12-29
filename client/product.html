@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品詳情</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="liff-ui.css">
+</head>
+<body class="bg-[#fafafa]">
+    <div id="productDetail" class="pb-24">
+        <div class="aspect-square bg-white overflow-hidden">
+            <img id="mainImg" src="" class="w-full h-full object-cover">
+        </div>
+
+        <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+                <h1 id="pName" class="text-xl font-medium tracking-tight"></h1>
+                <span id="pPrice" class="text-lg font-bold"></span>
+            </div>
+            <p id="pDesc" class="text-sm text-gray-500 mb-8 leading-relaxed"></p>
+
+            <div class="space-y-6">
+                <div>
+                    <label class="text-[11px] font-bold text-gray-400 uppercase block mb-3">Specification / 選擇度數 (系統已標記上次購買)</label>
+                    <div id="specGrid" class="grid grid-cols-4 gap-2">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-md border-t border-gray-50 flex gap-3">
+        <button id="addCartBtn" class="flex-1 bg-black text-white py-4 rounded-xl text-sm font-bold tracking-widest hover:opacity-90 active:scale-95 transition">
+            ADD TO CART
+        </button>
+        <button id="restockNotifyBtn" class="flex-1 border border-black py-4 rounded-xl text-sm font-bold hidden">
+            到貨通知我
+        </button>
+    </footer>
+
+    <script type="module" src="liff-main.js"></script>
+</body>
+</html>

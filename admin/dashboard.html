@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>數據大腦 - PREMIUM ADMIN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body class="bg-gray-50 flex">
+    <nav class="w-64 min-h-screen bg-white shadow-sm p-6">
+        <h1 class="font-bold text-xl mb-10">ADMIN SYSTEM</h1>
+        <ul class="space-y-6">
+            <li class="font-bold text-black border-l-4 border-black pl-2">數據大腦</li>
+            <li class="text-gray-400 hover:text-black transition"><a href="admin-products.html">商品管理</a></li>
+            <li class="text-gray-400 hover:text-black transition"><a href="admin-orders.html">訂單處理</a></li>
+            <li class="text-gray-400 hover:text-black transition"><a href="settings.html">系統自定義</a></li>
+        </ul>
+    </nav>
+
+    <main class="flex-1 p-10">
+        <header class="flex justify-between items-center mb-10">
+            <h2 class="text-2xl font-bold">營運概況 (Operational Dashboard)</h2>
+            <span class="text-gray-400 text-sm">最後更新: 2025-12-29</span>
+        </header>
+
+        <div class="grid grid-cols-4 gap-6 mb-10">
+            <div class="bg-white p-6 rounded-2xl shadow-sm">
+                <p class="text-gray-400 text-xs font-bold uppercase">今日營收</p>
+                <p class="text-2xl font-black mt-2">$42,800</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-pink-500">
+                <p class="text-gray-400 text-xs font-bold uppercase">棄單追回率</p>
+                <p class="text-2xl font-black mt-2">24.5%</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm">
+                <p class="text-gray-400 text-xs font-bold uppercase">平均客單價</p>
+                <p class="text-2xl font-black mt-2">$1,450</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm">
+                <p class="text-gray-400 text-xs font-bold uppercase">低庫存警告</p>
+                <p class="text-2xl font-black mt-2 text-red-500">5 件</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-sm">
+                <h3 class="font-bold mb-6">銷售趨勢 (Sales Trend)</h3>
+                <canvas id="salesChart"></canvas>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm">
+                <h3 class="font-bold mb-6">會員標籤分佈 (Member Tags)</h3>
+                <canvas id="tagChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 初始化圖表邏輯 (串接 Firestore 後動態更新)
+        const ctxSales = document.getElementById('salesChart').getContext('2d');
+        new Chart(ctxSales, {
+            type: 'line',
+            data: { labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], datasets: [{ label: '營收', data: [12000, 19000, 15000, 25000, 22000, 30000, 42800], borderColor: '#000', tension: 0.4 }] }
+        });
+
+        const ctxTag = document.getElementById('tagChart').getContext('2d');
+        new Chart(ctxTag, {
+            type: 'doughnut',
+            data: { labels: ['大地色控', '大直徑', '回購王', '高消費'], datasets: [{ data: [40, 25, 20, 15], backgroundColor: ['#000', '#333', '#666', '#999'] }] }
+        });
+    </script>
+</body>
+</html>

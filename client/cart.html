@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物車 - PREMIUM SELECT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="liff-ui.css">
+</head>
+<body class="bg-[#fafafa] pb-32">
+
+    <header class="p-4 bg-white border-b sticky top-0 z-40">
+        <div class="flex items-center justify-between">
+            <button onclick="history.back()"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <h1 class="text-sm font-bold tracking-widest">SHOPPING CART</h1>
+            <div class="w-6"></div>
+        </div>
+    </header>
+
+    <main class="p-4 space-y-6">
+        <section class="bg-white p-4 rounded-2xl shadow-sm border border-gray-50">
+            <div class="flex justify-between text-[11px] mb-2 font-bold italic">
+                <span id="progressText">還差 $1,200 免運</span>
+                <span id="targetText">$1,200 免運門檻</span>
+            </div>
+            <div class="bg-gray-100 h-2 rounded-full overflow-hidden">
+                <div id="progressBar" class="bg-black h-full transition-all duration-700 w-0"></div>
+            </div>
+        </section>
+
+        <section id="cartList" class="space-y-4">
+            </section>
+
+        <section>
+            <h3 class="text-[11px] font-bold text-gray-400 mb-3 tracking-widest">SMART ADD-ONS / 智能加價購</h3>
+            <div id="addonList" class="flex gap-4 overflow-x-auto pb-2 no-scrollbar">
+                </div>
+        </section>
+
+        <section class="bg-white p-6 rounded-2xl shadow-sm space-y-6">
+            <h3 class="text-sm font-bold border-b pb-3">SHIPPING & PAYMENT</h3>
+            
+            <div class="space-y-4">
+                <label class="block text-xs font-bold text-gray-500">配送方式 (LOGISTICS)</label>
+                <select id="logisticsType" class="w-full border-b py-2 focus:outline-none text-sm">
+                    <option value="home">黑貓宅急便 (宅配到府)</option>
+                    <option value="store">超商取貨 (7-11 / 全家)</option>
+                </select>
+                
+                <div id="addressSelectors" class="grid grid-cols-2 gap-2">
+                    <select id="city" class="border-b py-2 text-sm focus:outline-none"></select>
+                    <select id="district" class="border-b py-2 text-sm focus:outline-none"></select>
+                </div>
+                <input type="text" placeholder="詳細地址 / 門市名稱" class="w-full border-b py-2 text-sm focus:outline-none">
+            </div>
+
+            <div class="space-y-4 pt-4">
+                <label class="block text-xs font-bold text-gray-500">付款方式 (PAYMENT)</label>
+                <div class="grid grid-cols-2 gap-3">
+                    <button class="border p-3 rounded-xl text-xs font-medium active:border-black active:bg-gray-50">LINE Pay</button>
+                    <button class="border p-3 rounded-xl text-xs font-medium active:border-black active:bg-gray-50">銀行轉帳</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md p-6 border-t border-gray-100 flex justify-between items-center z-50">
+        <div>
+            <p class="text-[10px] text-gray-400 font-bold uppercase">Total Amount</p>
+            <p id="totalPrice" class="text-xl font-bold text-black">$0</p>
+        </div>
+        <button id="checkoutBtn" class="bg-black text-white px-10 py-4 rounded-xl text-sm font-bold tracking-widest hover:opacity-90 active:scale-95 transition">
+            CHECKOUT
+        </button>
+    </footer>
+
+    <script type="module">
+        import { AutomationEngine } from '../core/automation-logic.js';
+        
+        let currentTotal = 0;
+        const FREE_SHIPPING_LIMIT = 1200; // 串接後台自定義值
+
+        // 更新免運進度條與亮粉特效
+        function updateProgress(amount) {
+            currentTotal = amount;
+            const percentage = Math.min((amount / FREE_SHIPPING_LIMIT) * 100, 100);
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            progressBar.style.width = `${percentage}%`;
+
+            if (amount >= FREE_SHIPPING_LIMIT) {
+                progressText.innerText = "🎉 已達成免運優惠！";
+                progressText.classList.add("text-pink-500");
+                // 觸發亮粉特效
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.9 },
+                    colors: ['#000000', '#FFD700', '#FFC0CB']
+                });
+            } else {
+                progressText.innerText = `還差 $${FREE_SHIPPING_LIMIT - amount} 免運`;
+            }
+        }
+
+        // 初始化測試
+        updateProgress(800); 
+
+        // 物流分支邏輯：切換顯示地址或門市選擇
+        document.getElementById('logisticsType').addEventListener('change', (e) => {
+            const selectors = document.getElementById('addressSelectors');
+            if (e.target.value === 'store') {
+                // 可切換為超商地圖選擇器介面
+                console.log("切換為超商地圖邏輯");
+            }
+        });
+    </script>
+</body>
+</html>

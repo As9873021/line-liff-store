@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Premium Select - 韓系極簡商城</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="liff-ui.css">
+</head>
+<body class="bg-[#fafafa]">
+    <header class="sticky top-0 bg-white/80 backdrop-blur-md z-50 p-4 border-b border-gray-100">
+        <div class="flex justify-between items-center mb-2">
+            <h1 class="text-lg font-bold tracking-widest text-black">PREMIUM SELECT</h1>
+            <div id="cartIcon" class="relative">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+                <span id="cartCount" class="absolute -top-1 -right-1 bg-black text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
+            </div>
+        </div>
+        <div class="bg-gray-100 h-1.5 rounded-full overflow-hidden mt-3">
+            <div id="shippingProgress" class="bg-black h-full transition-all duration-500" style="width: 0%"></div>
+        </div>
+        <p id="shippingHint" class="text-[11px] text-gray-500 mt-1 text-center italic tracking-tight">再消費 $1,200 即可享有免運優惠</p>
+    </header>
+
+    <main class="p-4">
+        <section class="mb-8">
+            <h2 class="text-sm font-bold mb-4 tracking-tighter uppercase">Popular Ranking / 熱銷排行</h2>
+            <div id="rankingList" class="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+                </div>
+        </section>
+
+        <section>
+            <h2 class="text-sm font-bold mb-4 tracking-tighter uppercase">All Products / 所有商品</h2>
+            <div id="productList" class="grid grid-cols-2 gap-4">
+                </div>
+        </section>
+    </main>
+
+    <script type="module" src="liff-main.js"></script>
+</body>
+</html>
