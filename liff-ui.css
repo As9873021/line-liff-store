@@ -1,0 +1,25 @@
+:root {
+    --primary-black: #1a1a1a;
+    --soft-white: #fafafa;
+    --gold-gradient: linear-gradient(45deg, #d4af37, #f9f295, #d4af37); /* 金屬 VIP 進度條 */
+    --silver-gradient: linear-gradient(45deg, #c0c0c0, #ffffff, #c0c0c0);
+}
+
+body {
+    background-color: var(--soft-white);
+    font-family: 'Noto Sans TC', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.product-card {
+    border-radius: 16px; /* 16px 大圓角 */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* 微陰影 */
+    border: 1px solid rgba(0,0,0,0.02); /* 極細邊框 */
+}
+
+.vip-progress-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: var(--gold-gradient); /* 金屬質感 */
+    animation: flow 2s infinite linear;
+}
