@@ -1792,6 +1792,11 @@ app.get('/health', (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
+  
+// ====== SPA Catch-all 路由：非 API 路由重定向到 index.html ======
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 });
 
 // 🔥 加這行！強制 Git 變更
